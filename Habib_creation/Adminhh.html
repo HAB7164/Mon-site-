@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="google-site-verification" content="1rYcuY4hTHEWXmjFnR5pMqFapYzOY1xg0ThTZh9z1cM" />
+<meta charset="UTF-8" />
+
+<meta name="theme-color" content="#1C36CB">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Studio</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+:root {
+  --bg-a: #efeafb;
+  --bg-b: #e2dcf8;
+  --surface: #ffffff;
+  --ink: #221c35;
+  --ink-soft: #726c8c;
+  --grad-1: #8b6cf2;
+  --grad-2: #7c3aed;
+  --grad-3: #c026d3;
+  --chip: #f2edfd;
+  --ring: #e7e0fb;
+}
+* { box-sizing: border-box; }
+body {
+  min-height: 100vh;
+  background: white;
+  color: var(--ink);
+  font-family: "Inter", sans-serif;
+}
+.font-display { font-family: "Poppins", sans-serif; }
+
+.card {
+  background: var(--surface);
+  border-radius: 26px;
+  box-shadow: 0 14px 30px -18px rgba(80, 60, 140, 0.28);
+}
+
+.avatar-ring { border-radius: 9999px; padding: 4px; background: linear-gradient(135deg, var(--grad-1), var(--grad-3)); }
+
+.btn-grad {
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 12px 24px -12px rgba(124, 58, 237, 0.55);
+  transition: transform .15s ease;
+}
+.btn-grad:hover { transform: translateY(-2px); }
+
+.btn-ghost {
+  border-radius: 9999px;
+  background: var(--chip);
+  color: var(--grad-2);
+  font-weight: 600;
+  transition: background .15s ease;
+}
+.btn-ghost:hover { background: var(--ring); }
+
+.field label { font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--ink-soft); }
+.field input, .field textarea {
+  border: 1.5px solid var(--ring);
+  border-radius: 14px;
+  background: #fbfaff;
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--grad-2); box-shadow: 0 0 0 3px rgba(124,58,237,0.15); }
+
+.icon-pick {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--chip);
+  color: var(--grad-2);
+  border: 2px solid transparent;
+  transition: background .15s ease, border-color .15s ease;
+  font-size: 19px;
+}
+.icon-pick.selected {
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
+  color: #fff;
+  border-color: var(--grad-2);
+}
+
+.gallery-thumb {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--chip);
+  box-shadow: 0 8px 18px -10px rgba(80, 60, 140, 0.3);
+}
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-thumb .gthumb-actions {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(34,28,53,0.65), transparent 55%);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: 8px;
+  opacity: 0; transition: opacity .15s ease;
+}
+.gallery-thumb:hover .gthumb-actions { opacity: 1; }
+.gthumb-btn {
+  width: 28px; height: 28px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.92);
+  color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--ink); color: #fff;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-weight: 500;
+  transform: translateY(120%); transition: transform 0.25s ease; z-index: 100;
+}
+.toast.show { transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body class="min-h-screen">
+
+  <header class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full" style="background:linear-gradient(135deg,var(--grad-1),var(--grad-3))"></div>
+      <span class="font-display font-bold text-sm">Admin</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <button id="logout-btn" class="btn-ghost text-xs px-4 py-2 hidden">Déconnexion</button>
+      <a href="index.html" class="btn-ghost text-xs px-4 py-2">Voir le site →</a>
+    </div>
+  </header>
+
+  <!-- ECRAN DE CONNEXION -->
+  <main id="login-screen" class="max-w-sm mx-auto px-6 pb-24">
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">CONNEXION</p>
+      <h2 class="font-display font-bold text-2xl mb-6">Accès admin</h2>
+
+      <div class="field mb-4">
+        <label for="login-email">Email</label>
+        <input id="login-email" type="email" class="w-full mt-1 px-3.5 py-2.5" placeholder="votre@email.com" />
+      </div>
+      <div class="field mb-2">
+        <label for="login-password">Mot de passe</label>
+        <input id="login-password" type="password" class="w-full mt-1 px-3.5 py-2.5" placeholder="••••••••" />
+      </div>
+      <p id="login-error" class="text-xs mb-4 hidden" style="color:#e11d48"></p>
+
+      <button id="login-btn" class="btn-grad px-6 py-2.5 text-sm w-full">Se connecter</button>
+    </section>
+  </main>
+
+  <main id="admin-content" class="max-w-3xl mx-auto px-6 pb-24 space-y-8 hidden">
+
+    <!-- PROFIL -->
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">01 · PROFIL</p>
+      <h2 class="font-display font-bold text-2xl mb-6">Photo &amp; présentation</h2>
+
+      <div class="flex flex-col sm:flex-row gap-6 mb-6">
+        <div class="avatar-ring w-28 h-28 shrink-0 mx-auto sm:mx-0">
+          <img id="preview-photo" src="https://placehold.co/300x300/8b6cf2/ffffff?text=Photo" class="w-full h-full object-cover rounded-full" alt="Aperçu" />
+        </div>
+        <div class="flex-1 space-y-3">
+          <div class="field">
+            <label>Changer la photo (fichier image)</label>
+            <input type="file" id="photo-input" accept="image/*" class="w-full text-sm mt-1" />
+          </div>
+          <p class="text-xs" style="color:var(--ink-soft)">L'image est redimensionnée automatiquement avant l'enregistrement.</p>
+        </div>
+      </div>
+
+      <div class="field mb-4">
+        <label for="name-input">Nom / titre affiché</label>
+        <input id="name-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="Votre nom" />
+      </div>
+
+      <div class="field mb-5">
+        <label for="bio-input">Texte de présentation</label>
+        <textarea id="bio-input" rows="4" class="w-full mt-1 px-3.5 py-2.5" placeholder="Décrivez-vous en quelques phrases"></textarea>
+      </div>
+
+      <button id="save-profile" class="btn-grad px-6 py-2.5 text-sm">Enregistrer le profil</button>
+    </section>
+
+    <!-- RESEAUX SOCIAUX -->
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">02 · CANAUX</p>
+      <h2 class="font-display font-bold text-2xl mb-2">Réseaux sociaux</h2>
+      <p class="text-sm mb-5" style="color:var(--ink-soft)">Laissez un champ vide pour masquer ce canal sur le site.</p>
+
+      <div class="grid sm:grid-cols-2 gap-4 mb-5">
+        <div class="field">
+          <label for="ig-input">Instagram (nom d'utilisateur)</label>
+          <input id="ig-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: votre_studio" />
+        </div>
+        <div class="field">
+          <label for="tg-input">Telegram (nom d'utilisateur)</label>
+          <input id="tg-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: votre_studio" />
+        </div>
+        <div class="field">
+          <label for="wa-input">WhatsApp (numéro avec indicatif)</label>
+          <input id="wa-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: 22790000000" />
+        </div>
+        <div class="field">
+          <label for="fb-input">Facebook (nom d'utilisateur ou lien)</label>
+          <input id="fb-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: votre.page ou https://facebook.com/..." />
+        </div>
+        <div class="field">
+          <label for="phone-input">Numéro d'appel</label>
+          <input id="phone-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: +22790000000" />
+        </div>
+      </div>
+
+      <button id="save-socials" class="btn-grad px-6 py-2.5 text-sm">Enregistrer les réseaux</button>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">03 · CATALOGUE</p>
+      <h2 class="font-display font-bold text-2xl mb-6">Services</h2>
+
+      <div id="services-list" class="space-y-5 mb-6"></div>
+
+      <button id="add-service" class="btn-ghost px-5 py-2.5 text-sm">+ Ajouter un service</button>
+    </section>
+
+    <!-- GALERIE -->
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">04 · GALERIE</p>
+      <h2 class="font-display font-bold text-2xl mb-2">Galerie photo</h2>
+      <p class="text-sm mb-5" style="color:var(--ink-soft)">Ces images défilent automatiquement sur la page d'accueil.</p>
+
+      <div class="field mb-5">
+        <label>Ajouter des images</label>
+        <input type="file" id="gallery-input" accept="image/*" multiple class="w-full text-sm mt-1" />
+      </div>
+
+      <div id="gallery-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- PARTAGE DU SITE -->
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">05 · PARTAGE</p>
+      <h2 class="font-display font-bold text-2xl mb-2">Lien à partager</h2>
+      <p class="text-sm mb-5" style="color:var(--ink-soft)">C'est ce lien qui sera utilisé par le bouton « Partager » sur le site.</p>
+
+      <div class="field mb-5">
+        <label for="site-link-input">Lien du site (URL)</label>
+        <input id="site-link-input" type="url" class="w-full mt-1 px-3.5 py-2.5" placeholder="https://habib-creation-service.web.app/Client.html" />
+      </div>
+
+      <button id="save-site-link" class="btn-grad px-6 py-2.5 text-sm">Enregistrer le lien</button>
+    </section>
+
+    <!-- PROMOTIONS -->
+    <section class="card p-6 sm:p-8">
+      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">06 · PROMOTIONS</p>
+      <h2 class="font-display font-bold text-2xl mb-2">Annonces de promotion</h2>
+      <p class="text-sm mb-6" style="color:var(--ink-soft)">Ajoutez une ou plusieurs promotions. La première promotion active (en haut de la liste) apparaît dans le cadre flottant animé du site ; toutes les promotions actives apparaissent aussi dans la section « Promotions » visible par les visiteurs.</p>
+
+      <div id="promotions-list" class="space-y-5 mb-6"></div>
+
+      <button id="add-promotion" class="btn-ghost px-5 py-2.5 text-sm">+ Ajouter une promotion</button>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script>
+  // ============================================================
+  // CONFIGURATION FIREBASE — remplace ces valeurs par les tiennes
+  // (les mêmes que dans index.html)
+  // ============================================================
+  const firebaseConfig = {
+  apiKey: "AIzaSyBBmz7Tg7ZhWde3f0WEYFDkDQE6h0B9Dlw",
+  authDomain: "habib-creation-service.firebaseapp.com",
+  projectId: "habib-creation-service",
+  storageBucket: "habib-creation-service.firebasestorage.app",
+  messagingSenderId: "676176613725",
+  appId: "1:676176613725:web:22a617df879f846a5798b4"
+};
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+
+  // ---- bibliothèque d'icônes pour les services (Bootstrap Icons) ----
+  const SERVICE_ICONS = {
+    palette: "bi-palette2",
+    printer: "bi-printer-fill",
+    share: "bi-share-fill",
+    code: "bi-code-slash",
+    camera: "bi-camera-fill",
+    megaphone: "bi-megaphone-fill",
+    chat: "bi-chat-dots-fill",
+    star: "bi-star-fill"
+  };
+  const ICON_KEYS = Object.keys(SERVICE_ICONS);
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2200);
+  }
+
+  function resizeImageToBase64(file, maxSize = 480, quality = 0.82) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          let { width, height } = img;
+          if (width > height && width > maxSize) { height = Math.round((height * maxSize) / width); width = maxSize; }
+          else if (height > maxSize) { width = Math.round((width * maxSize) / height); height = maxSize; }
+          const canvas = document.createElement("canvas");
+          canvas.width = width; canvas.height = height;
+          canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ---------- PROFIL ----------
+  let pendingPhotoBase64 = null;
+
+  async function loadProfile() {
+    try {
+      const snap = await db.collection("config").doc("profile").get();
+      if (snap.exists) {
+        const data = snap.data();
+        document.getElementById("name-input").value = data.name || "";
+        document.getElementById("bio-input").value = data.bio || "";
+        if (data.photoUrl) document.getElementById("preview-photo").src = data.photoUrl;
+      }
+    } catch (err) { console.warn("Impossible de charger le profil :", err); }
+  }
+
+  document.getElementById("photo-input").addEventListener("change", async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    pendingPhotoBase64 = await resizeImageToBase64(file);
+    document.getElementById("preview-photo").src = pendingPhotoBase64;
+  });
+
+  document.getElementById("save-profile").addEventListener("click", async () => {
+    const payload = {
+      name: document.getElementById("name-input").value.trim(),
+      bio: document.getElementById("bio-input").value.trim()
+    };
+    if (pendingPhotoBase64) payload.photoUrl = pendingPhotoBase64;
+    try {
+      await db.collection("config").doc("profile").set(payload, { merge: true });
+      showToast("Profil enregistré ✓");
+    } catch (err) {
+      showToast("Erreur — vérifiez la configuration Firebase");
+      console.error(err);
+    }
+  });
+
+  // ---------- RESEAUX SOCIAUX ----------
+  async function loadSocials() {
+    try {
+      const snap = await db.collection("config").doc("socials").get();
+      if (snap.exists) {
+        const data = snap.data();
+        document.getElementById("ig-input").value = data.instagram || "";
+        document.getElementById("tg-input").value = data.telegram || "";
+        document.getElementById("wa-input").value = data.whatsapp || "";
+        document.getElementById("fb-input").value = data.facebook || "";
+        document.getElementById("phone-input").value = data.phone || "";
+      }
+    } catch (err) { console.warn("Impossible de charger les réseaux :", err); }
+  }
+
+  document.getElementById("save-socials").addEventListener("click", async () => {
+    const payload = {
+      instagram: document.getElementById("ig-input").value.trim(),
+      telegram: document.getElementById("tg-input").value.trim(),
+      whatsapp: document.getElementById("wa-input").value.trim(),
+      facebook: document.getElementById("fb-input").value.trim(),
+      phone: document.getElementById("phone-input").value.trim()
+    };
+    try {
+      await db.collection("config").doc("socials").set(payload, { merge: true });
+      showToast("Réseaux enregistrés ✓");
+    } catch (err) {
+      showToast("Erreur — vérifiez la configuration Firebase");
+      console.error(err);
+    }
+  });
+
+  // ---------- SERVICES ----------
+  async function loadServices() {
+    const list = document.getElementById("services-list");
+    list.innerHTML = "";
+    try {
+      const snap = await db.collection("services").orderBy("order").get();
+      snap.docs.forEach(doc => renderServiceRow({ id: doc.id, ...doc.data() }));
+    } catch (err) { console.warn("Impossible de charger les services :", err); }
+  }
+
+  function renderServiceRow(service) {
+    const list = document.getElementById("services-list");
+    const row = document.createElement("div");
+    row.className = "border rounded-2xl p-4 sm:p-5";
+    row.style.borderColor = "var(--ring)";
+    const selectedIcon = service.icon && SERVICE_ICONS[service.icon] ? service.icon : "star";
+
+    row.innerHTML = `
+      <div class="grid gap-3">
+        <div class="field">
+          <label>Icône</label>
+          <div class="icon-grid flex flex-wrap gap-2 mt-1"></div>
+        </div>
+        <div class="field">
+          <label>Titre</label>
+          <input type="text" class="w-full mt-1 px-3.5 py-2.5 svc-title" value="${escapeAttr(service.title || "")}" />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea rows="2" class="w-full mt-1 px-3.5 py-2.5 svc-desc">${escapeHtml(service.description || "")}</textarea>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 justify-between pt-1">
+          <label class="text-xs flex items-center gap-2 font-medium" style="color:var(--ink-soft)">
+            <input type="checkbox" class="svc-active" ${service.active !== false ? "checked" : ""}/> Actif (visible sur le site)
+          </label>
+          <div class="flex gap-2">
+            <button class="btn-ghost px-3 py-1.5 text-xs svc-up" title="Monter">↑</button>
+            <button class="btn-ghost px-3 py-1.5 text-xs svc-down" title="Descendre">↓</button>
+            <button class="btn-grad px-4 py-1.5 text-xs svc-save">Enregistrer</button>
+            <button class="btn-ghost px-3 py-1.5 text-xs svc-delete">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    `;
+    row.dataset.id = service.id || "";
+    row.dataset.order = service.order || 99;
+    row.dataset.icon = selectedIcon;
+
+    const iconGrid = row.querySelector(".icon-grid");
+    ICON_KEYS.forEach(key => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "icon-pick" + (key === selectedIcon ? " selected" : "");
+      btn.innerHTML = `<i class="bi ${SERVICE_ICONS[key]}"></i>`;
+      btn.dataset.icon = key;
+      btn.addEventListener("click", () => {
+        row.dataset.icon = key;
+        iconGrid.querySelectorAll(".icon-pick").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+      });
+      iconGrid.appendChild(btn);
+    });
+
+    row.querySelector(".svc-save").addEventListener("click", () => saveServiceRow(row));
+    row.querySelector(".svc-delete").addEventListener("click", () => deleteServiceRow(row));
+    row.querySelector(".svc-up").addEventListener("click", () => moveServiceRow(row, -1));
+    row.querySelector(".svc-down").addEventListener("click", () => moveServiceRow(row, 1));
+
+    list.appendChild(row);
+  }
+
+  async function saveServiceRow(row) {
+    const title = row.querySelector(".svc-title").value.trim();
+    const description = row.querySelector(".svc-desc").value.trim();
+    const active = row.querySelector(".svc-active").checked;
+    const order = Number(row.dataset.order) || 1;
+    const icon = row.dataset.icon || "star";
+    if (!title) { showToast("Le titre est obligatoire"); return; }
+    try {
+      if (row.dataset.id) {
+        await db.collection("services").doc(row.dataset.id).set({ title, description, active, order, icon }, { merge: true });
+      } else {
+        const ref = await db.collection("services").add({ title, description, active, order, icon });
+        row.dataset.id = ref.id;
+      }
+      showToast("Service enregistré ✓");
+    } catch (err) {
+      showToast("Erreur — vérifiez la configuration Firebase");
+      console.error(err);
+    }
+  }
+
+  async function deleteServiceRow(row) {
+    if (!confirm("Supprimer ce service ?")) return;
+    try {
+      if (row.dataset.id) await db.collection("services").doc(row.dataset.id).delete();
+      row.remove();
+      showToast("Service supprimé");
+    } catch (err) {
+      showToast("Erreur lors de la suppression");
+      console.error(err);
+    }
+  }
+
+  function moveServiceRow(row, direction) {
+    const sibling = direction < 0 ? row.previousElementSibling : row.nextElementSibling;
+    if (!sibling) return;
+    const list = document.getElementById("services-list");
+    if (direction < 0) list.insertBefore(row, sibling);
+    else list.insertBefore(sibling, row);
+    reindexOrders();
+  }
+
+  async function reindexOrders() {
+    const rows = [...document.querySelectorAll("#services-list > div")];
+    const updates = rows.map((row, i) => {
+      row.dataset.order = i + 1;
+      if (row.dataset.id) return db.collection("services").doc(row.dataset.id).set({ order: i + 1 }, { merge: true });
+      return Promise.resolve();
+    });
+    try { await Promise.all(updates); } catch (err) { console.warn("Erreur de réordonnancement :", err); }
+  }
+
+  document.getElementById("add-service").addEventListener("click", () => {
+    const count = document.getElementById("services-list").children.length;
+    renderServiceRow({ id: "", title: "", description: "", active: true, order: count + 1, icon: "star" });
+  });
+
+  function escapeHtml(str) { const div = document.createElement("div"); div.textContent = str; return div.innerHTML; }
+  function escapeAttr(str) { return escapeHtml(str).replace(/"/g, "&quot;"); }
+
+  // ---------- GALERIE ----------
+  async function loadGallery() {
+    const list = document.getElementById("gallery-list");
+    list.innerHTML = "";
+    try {
+      const snap = await db.collection("gallery").orderBy("order").get();
+      snap.docs.forEach(doc => renderGalleryThumb({ id: doc.id, ...doc.data() }));
+    } catch (err) { console.warn("Impossible de charger la galerie :", err); }
+  }
+
+  function renderGalleryThumb(item) {
+    const list = document.getElementById("gallery-list");
+    const thumb = document.createElement("div");
+    thumb.className = "gallery-thumb";
+    thumb.dataset.id = item.id || "";
+    thumb.dataset.order = item.order || 99;
+    thumb.innerHTML = `
+      <img src="${escapeAttr(item.imageUrl || "")}" alt="Image galerie" />
+      <div class="gthumb-actions">
+        <button type="button" class="gthumb-btn gth-left" title="Monter">←</button>
+        <div class="flex gap-1.5">
+          <button type="button" class="gthumb-btn gth-right" title="Descendre">→</button>
+          <button type="button" class="gthumb-btn gth-delete" title="Supprimer">✕</button>
+        </div>
+      </div>
+    `;
+    thumb.querySelector(".gth-delete").addEventListener("click", () => deleteGalleryThumb(thumb));
+    thumb.querySelector(".gth-left").addEventListener("click", () => moveGalleryThumb(thumb, -1));
+    thumb.querySelector(".gth-right").addEventListener("click", () => moveGalleryThumb(thumb, 1));
+    list.appendChild(thumb);
+  }
+
+  document.getElementById("gallery-input").addEventListener("change", async e => {
+    const files = [...e.target.files];
+    if (!files.length) return;
+    const list = document.getElementById("gallery-list");
+    for (const file of files) {
+      try {
+        const base64 = await resizeImageToBase64(file, 900, 0.8);
+        const order = list.children.length + 1;
+        const ref = await db.collection("gallery").add({ imageUrl: base64, order });
+        renderGalleryThumb({ id: ref.id, imageUrl: base64, order });
+      } catch (err) {
+        showToast("Erreur — vérifiez la configuration Firebase");
+        console.error(err);
+      }
+    }
+    showToast("Image(s) ajoutée(s) ✓");
+    e.target.value = "";
+  });
+
+  async function deleteGalleryThumb(thumb) {
+    if (!confirm("Supprimer cette image ?")) return;
+    try {
+      if (thumb.dataset.id) await db.collection("gallery").doc(thumb.dataset.id).delete();
+      thumb.remove();
+      showToast("Image supprimée");
+    } catch (err) {
+      showToast("Erreur lors de la suppression");
+      console.error(err);
+    }
+  }
+
+  function moveGalleryThumb(thumb, direction) {
+    const sibling = direction < 0 ? thumb.previousElementSibling : thumb.nextElementSibling;
+    if (!sibling) return;
+    const list = document.getElementById("gallery-list");
+    if (direction < 0) list.insertBefore(thumb, sibling);
+    else list.insertBefore(sibling, thumb);
+    reindexGalleryOrders();
+  }
+
+  async function reindexGalleryOrders() {
+    const thumbs = [...document.querySelectorAll("#gallery-list > div")];
+    const updates = thumbs.map((thumb, i) => {
+      thumb.dataset.order = i + 1;
+      if (thumb.dataset.id) return db.collection("gallery").doc(thumb.dataset.id).set({ order: i + 1 }, { merge: true });
+      return Promise.resolve();
+    });
+    try { await Promise.all(updates); } catch (err) { console.warn("Erreur de réordonnancement galerie :", err); }
+  }
+
+  // ---------- PARTAGE DU SITE (lien) ----------
+  async function loadSiteLink() {
+    try {
+      const snap = await db.collection("config").doc("site").get();
+      const input = document.getElementById("site-link-input");
+      if (snap.exists && snap.data().link) {
+        input.value = snap.data().link;
+      } else {
+        input.value = window.location.origin + "/Client.html";
+      }
+    } catch (err) { console.warn("Impossible de charger le lien du site :", err); }
+  }
+
+  document.getElementById("save-site-link").addEventListener("click", async () => {
+    const link = document.getElementById("site-link-input").value.trim();
+    if (!link) { showToast("Merci de renseigner un lien"); return; }
+    try {
+      await db.collection("config").doc("site").set({ link }, { merge: true });
+      showToast("Lien enregistré ✓");
+    } catch (err) {
+      showToast("Erreur — vérifiez la configuration Firebase");
+      console.error(err);
+    }
+  });
+
+  // ---------- PROMOTIONS ----------
+  async function loadPromotions() {
+    const list = document.getElementById("promotions-list");
+    list.innerHTML = "";
+    try {
+      const snap = await db.collection("promotions").orderBy("order").get();
+      snap.docs.forEach(doc => renderPromotionRow({ id: doc.id, ...doc.data() }));
+    } catch (err) { console.warn("Impossible de charger les promotions :", err); }
+  }
+
+  function renderPromotionRow(promo) {
+    const list = document.getElementById("promotions-list");
+    const row = document.createElement("div");
+    row.className = "border rounded-2xl p-4 sm:p-5";
+    row.style.borderColor = "var(--ring)";
+    row.dataset.id = promo.id || "";
+    row.dataset.order = promo.order || 99;
+    row.dataset.image = promo.imageUrl || "";
+
+    row.innerHTML = `
+      <div class="flex flex-col sm:flex-row gap-4 mb-4">
+        <div class="w-full sm:w-32 shrink-0">
+          <div class="gallery-thumb" style="aspect-ratio:4/3;">
+            <img class="promo-row-preview" src="${escapeAttr(promo.imageUrl || "https://placehold.co/400x300/8b6cf2/ffffff?text=Image+promo")}" alt="Aperçu promotion" />
+          </div>
+          <input type="file" accept="image/*" class="promo-row-photo w-full text-xs mt-2" />
+        </div>
+        <div class="flex-1 grid gap-3">
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="field">
+              <label>Étiquette (badge)</label>
+              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-badge" value="${escapeAttr(promo.badge || "")}" placeholder="ex: Promo, -20%, Nouveau" />
+            </div>
+            <div class="field">
+              <label>Titre</label>
+              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-title" value="${escapeAttr(promo.title || "")}" placeholder="ex: Pack identité visuelle" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Description courte</label>
+            <textarea rows="2" class="w-full mt-1 px-3.5 py-2.5 promo-desc" placeholder="Décrivez brièvement l'offre">${escapeHtml(promo.description || "")}</textarea>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="field">
+              <label>Prix normal</label>
+              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-normal" value="${escapeAttr(promo.normalPrice || "")}" placeholder="ex: 25 000 FCFA" />
+            </div>
+            <div class="field">
+              <label>Prix promotionnel</label>
+              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-promo" value="${escapeAttr(promo.promoPrice || "")}" placeholder="ex: 15 000 FCFA" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Texte du bouton</label>
+            <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-btntext" value="${escapeAttr(promo.buttonText || "")}" placeholder="ex: Profiter de l'offre" />
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 justify-between pt-1">
+        <label class="text-xs flex items-center gap-2 font-medium" style="color:var(--ink-soft)">
+          <input type="checkbox" class="promo-active" ${promo.active !== false ? "checked" : ""}/> Active (visible sur le site)
+        </label>
+        <div class="flex gap-2">
+          <button class="btn-ghost px-3 py-1.5 text-xs promo-up" title="Monter">↑</button>
+          <button class="btn-ghost px-3 py-1.5 text-xs promo-down" title="Descendre">↓</button>
+          <button class="btn-grad px-4 py-1.5 text-xs promo-save">Enregistrer</button>
+          <button class="btn-ghost px-3 py-1.5 text-xs promo-delete">Supprimer</button>
+        </div>
+      </div>
+    `;
+
+    row.querySelector(".promo-row-photo").addEventListener("change", async e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const base64 = await resizeImageToBase64(file, 700, 0.8);
+      row.dataset.image = base64;
+      row.querySelector(".promo-row-preview").src = base64;
+    });
+
+    row.querySelector(".promo-save").addEventListener("click", () => savePromotionRow(row));
+    row.querySelector(".promo-delete").addEventListener("click", () => deletePromotionRow(row));
+    row.querySelector(".promo-up").addEventListener("click", () => movePromotionRow(row, -1));
+    row.querySelector(".promo-down").addEventListener("click", () => movePromotionRow(row, 1));
+
+    list.appendChild(row);
+  }
+
+  async function savePromotionRow(row) {
+    const title = row.querySelector(".promo-title").value.trim();
+    const badge = row.querySelector(".promo-badge").value.trim();
+    const description = row.querySelector(".promo-desc").value.trim();
+    const normalPrice = row.querySelector(".promo-normal").value.trim();
+    const promoPrice = row.querySelector(".promo-promo").value.trim();
+    const buttonText = row.querySelector(".promo-btntext").value.trim();
+    const active = row.querySelector(".promo-active").checked;
+    const order = Number(row.dataset.order) || 1;
+    const imageUrl = row.dataset.image || "";
+    if (!title) { showToast("Le titre est obligatoire"); return; }
+    if (!promoPrice) { showToast("Merci d'indiquer le prix promotionnel"); return; }
+    const payload = { title, badge, description, normalPrice, promoPrice, buttonText, active, order, imageUrl };
+    try {
+      if (row.dataset.id) {
+        await db.collection("promotions").doc(row.dataset.id).set(payload, { merge: true });
+      } else {
+        const ref = await db.collection("promotions").add(payload);
+        row.dataset.id = ref.id;
+      }
+      showToast("Promotion enregistrée ✓");
+    } catch (err) {
+      showToast("Erreur — vérifiez la configuration Firebase");
+      console.error(err);
+    }
+  }
+
+  async function deletePromotionRow(row) {
+    if (!confirm("Supprimer cette promotion ?")) return;
+    try {
+      if (row.dataset.id) await db.collection("promotions").doc(row.dataset.id).delete();
+      row.remove();
+      showToast("Promotion supprimée");
+    } catch (err) {
+      showToast("Erreur lors de la suppression");
+      console.error(err);
+    }
+  }
+
+  function movePromotionRow(row, direction) {
+    const sibling = direction < 0 ? row.previousElementSibling : row.nextElementSibling;
+    if (!sibling) return;
+    const list = document.getElementById("promotions-list");
+    if (direction < 0) list.insertBefore(row, sibling);
+    else list.insertBefore(sibling, row);
+    reindexPromotionOrders();
+  }
+
+  async function reindexPromotionOrders() {
+    const rows = [...document.querySelectorAll("#promotions-list > div")];
+    const updates = rows.map((row, i) => {
+      row.dataset.order = i + 1;
+      if (row.dataset.id) return db.collection("promotions").doc(row.dataset.id).set({ order: i + 1 }, { merge: true });
+      return Promise.resolve();
+    });
+    try { await Promise.all(updates); } catch (err) { console.warn("Erreur de réordonnancement des promotions :", err); }
+  }
+
+  document.getElementById("add-promotion").addEventListener("click", () => {
+    const count = document.getElementById("promotions-list").children.length;
+    renderPromotionRow({ id: "", title: "", badge: "Promo", description: "", normalPrice: "", promoPrice: "", buttonText: "Profiter de l'offre", active: true, order: count + 1, imageUrl: "" });
+  });
+
+  // ---------- AUTHENTIFICATION ----------
+  const loginScreen = document.getElementById("login-screen");
+  const adminContent = document.getElementById("admin-content");
+  const logoutBtn = document.getElementById("logout-btn");
+  const loginError = document.getElementById("login-error");
+  let dataLoaded = false;
+
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      loginScreen.classList.add("hidden");
+      adminContent.classList.remove("hidden");
+      logoutBtn.classList.remove("hidden");
+      if (!dataLoaded) {
+        dataLoaded = true;
+        loadProfile();
+        loadSocials();
+        loadServices();
+        loadGallery();
+        loadSiteLink();
+        loadPromotions();
+      }
+    } else {
+      loginScreen.classList.remove("hidden");
+      adminContent.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
+    }
+  });
+
+  document.getElementById("login-btn").addEventListener("click", () => {
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value;
+    loginError.classList.add("hidden");
+    if (!email || !password) {
+      loginError.textContent = "Merci de remplir l'email et le mot de passe.";
+      loginError.classList.remove("hidden");
+      return;
+    }
+    auth.signInWithEmailAndPassword(email, password).catch(err => {
+      loginError.textContent = "Connexion impossible : email ou mot de passe incorrect.";
+      loginError.classList.remove("hidden");
+      console.error(err);
+    });
+  });
+
+  document.getElementById("login-password").addEventListener("keydown", e => {
+    if (e.key === "Enter") document.getElementById("login-btn").click();
+  });
+
+  logoutBtn.addEventListener("click", () => auth.signOut());
+  </script>
+</body>
+</html>
