@@ -1,19 +1,13 @@
 {
-  "name": "Habib Création — Graphisme & Web",
+  "name": "Habib Création — Studio créatif & digital",
   "short_name": "Habib Création",
-  "description": "Studio créatif spécialisé dans le graphisme, la communication visuelle et la création de sites web modernes.",
-  "start_url": "/Client.html",
-  "id": "/Client.html",
-  "scope": "/",
+  "description": "Studio créatif & digital à Niamey — graphisme, identité visuelle, sites web et solutions digitales.",
+  "start_url": "/index.html",
   "display": "standalone",
-  "orientation": "any",
-  "background_color": "#efeafb",
-  "theme_color": "#1C36CB",
+  "background_color": "#ffffff",
+  "theme_color": "#14131c",
   "lang": "fr",
   "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }

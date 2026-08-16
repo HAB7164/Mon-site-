@@ -1,291 +1,280 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta name="google-site-verification" content="1rYcuY4hTHEWXmjFnR5pMqFapYzOY1xg0ThTZh9z1cM" />
 <meta charset="UTF-8" />
-
-<meta name="theme-color" content="#1C36CB">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Admin — Studio</title>
-
+<meta name="robots" content="noindex, nofollow">
+<title>Administration · Habib Création</title>
+<meta name="theme-color" content="#14131c">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;0,900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 
 <style>
+/* Garde-fou : l'affichage/masquage de l'écran de connexion ne doit jamais dépendre
+   uniquement du chargement réussi du CDN Tailwind (réseau lent, bloqueur de script). */
+.hidden { display: none !important; }
+
 :root {
-  --bg-a: #efeafb;
-  --bg-b: #e2dcf8;
   --surface: #ffffff;
-  --ink: #221c35;
-  --ink-soft: #726c8c;
-  --grad-1: #8b6cf2;
-  --grad-2: #7c3aed;
-  --grad-3: #c026d3;
-  --chip: #f2edfd;
-  --ring: #e7e0fb;
+  --chip: var(--accent-soft);
+  --ring: var(--line);
 }
-* { box-sizing: border-box; }
-body {
-  min-height: 100vh;
-  background: white;
-  color: var(--ink);
-  font-family: "Inter", sans-serif;
-}
-.font-display { font-family: "Poppins", sans-serif; }
+body { background: var(--paper-soft); }
 
-.card {
-  background: var(--surface);
-  border-radius: 26px;
-  box-shadow: 0 14px 30px -18px rgba(80, 60, 140, 0.28);
-}
-
-.avatar-ring { border-radius: 9999px; padding: 4px; background: linear-gradient(135deg, var(--grad-1), var(--grad-3)); }
+.card { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-card); }
 
 .btn-grad {
-  border-radius: 9999px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 12px 24px -12px rgba(124, 58, 237, 0.55);
-  transition: transform .15s ease;
+  border-radius: 9999px; background: var(--ink); color: #fff; font-weight: 600;
+  padding: 10px 24px; font-size: 14px; transition: transform .15s ease, background .15s ease;
 }
-.btn-grad:hover { transform: translateY(-2px); }
+.btn-grad:hover { transform: translateY(-2px); background: var(--accent); }
 
 .btn-ghost {
-  border-radius: 9999px;
-  background: var(--chip);
-  color: var(--grad-2);
-  font-weight: 600;
-  transition: background .15s ease;
+  border-radius: 9999px; background: var(--paper-soft); color: var(--ink);
+  font-weight: 600; padding: 10px 20px; font-size: 13px; transition: background .15s ease;
 }
-.btn-ghost:hover { background: var(--ring); }
+.btn-ghost:hover { background: var(--accent-soft); color: var(--accent-deep); }
 
-.field label { font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--ink-soft); }
-.field input, .field textarea {
-  border: 1.5px solid var(--ring);
-  border-radius: 14px;
-  background: #fbfaff;
+.field label { font-size: 12px; font-weight: 600; letter-spacing: .01em; color: var(--ink-soft); display:block; margin-bottom: 3px; }
+.field input, .field textarea, .field select {
+  border: 1.5px solid var(--ring); border-radius: 12px; background: var(--paper-soft);
+  font-family: var(--font-body); font-size: 14px; color: var(--ink); width: 100%;
 }
-.field input:focus, .field textarea:focus { outline: none; border-color: var(--grad-2); box-shadow: 0 0 0 3px rgba(124,58,237,0.15); }
-
-.icon-pick {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--chip);
-  color: var(--grad-2);
-  border: 2px solid transparent;
-  transition: background .15s ease, border-color .15s ease;
-  font-size: 19px;
-}
-.icon-pick.selected {
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  color: #fff;
-  border-color: var(--grad-2);
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-.gallery-thumb {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-  background: var(--chip);
-  box-shadow: 0 8px 18px -10px rgba(80, 60, 140, 0.3);
+.admin-nav-pill {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-bottom: 6px; display: block;
 }
+
+.gallery-thumb { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 1/1; background: var(--paper-soft); }
 .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .gallery-thumb .gthumb-actions {
-  position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(34,28,53,0.65), transparent 55%);
-  display: flex; align-items: flex-end; justify-content: space-between;
-  padding: 8px;
-  opacity: 0; transition: opacity .15s ease;
+  position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20,19,28,0.65), transparent 55%);
+  display: flex; align-items: flex-end; justify-content: flex-end; padding: 8px; opacity: 0; transition: opacity .15s ease;
 }
 .gallery-thumb:hover .gthumb-actions { opacity: 1; }
 .gthumb-btn {
-  width: 28px; height: 28px;
-  border-radius: 9999px;
-  background: rgba(255,255,255,0.92);
-  color: var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 700;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.92); color: var(--ink);
+  display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .toast {
-  position: fixed; bottom: 24px; right: 24px;
-  background: var(--ink); color: #fff;
-  border-radius: 14px;
-  padding: 10px 18px;
-  font-weight: 500;
-  transform: translateY(120%); transition: transform 0.25s ease; z-index: 100;
+  position: fixed; bottom: 24px; right: 24px; background: var(--ink); color: #fff; border-radius: 14px;
+  padding: 12px 20px; font-weight: 500; font-size: 14px; transform: translateY(140%); transition: transform .25s ease; z-index: 100;
 }
 .toast.show { transform: translateY(0); }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.admin-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 28px; }
+.admin-tab {
+  font-size: 13px; font-weight: 600; color: var(--ink-soft); background: var(--paper);
+  border: 1.5px solid var(--line); padding: 9px 16px; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+}
+.admin-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.admin-panel { display: none; }
+.admin-panel.active { display: block; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-  <header class="max-w-3xl mx-auto px-6 py-6 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-full" style="background:linear-gradient(135deg,var(--grad-1),var(--grad-3))"></div>
-      <span class="font-display font-bold text-sm">Admin</span>
+<header class="wrap" style="padding-top:24px; padding-bottom:16px; display:flex; align-items:center; justify-content:space-between;">
+  <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Admin</span></a>
+  <div class="flex items-center gap-3" style="display:flex; gap:12px;">
+    <button id="logout-btn" class="btn-ghost hidden">Déconnexion</button>
+    <a href="index.html" class="btn-ghost">Voir le site →</a>
+  </div>
+</header>
+
+<!-- ÉCRAN DE CONNEXION -->
+<main id="login-screen" class="wrap" style="max-width:420px; padding-bottom:100px; padding-top:40px;">
+  <section class="card" style="padding:34px 28px;">
+    <span class="admin-nav-pill">Connexion</span>
+    <h2 style="font-size:26px; margin-bottom:24px;">Accès admin</h2>
+
+    <div class="field" style="margin-bottom:16px;">
+      <label for="login-email">Email</label>
+      <input id="login-email" type="email" style="padding:11px 14px;" placeholder="votre@email.com" />
     </div>
-    <div class="flex items-center gap-3">
-      <button id="logout-btn" class="btn-ghost text-xs px-4 py-2 hidden">Déconnexion</button>
-      <a href="index.html" class="btn-ghost text-xs px-4 py-2">Voir le site →</a>
+    <div class="field" style="margin-bottom:10px;">
+      <label for="login-password">Mot de passe</label>
+      <input id="login-password" type="password" style="padding:11px 14px;" placeholder="••••••••" />
     </div>
-  </header>
+    <p id="login-error" class="hidden" style="font-size:12.5px; color:#e11d48; margin-bottom:14px;"></p>
+    <button id="login-btn" class="btn-grad" style="width:100%;">Se connecter</button>
+  </section>
+</main>
 
-  <!-- ECRAN DE CONNEXION -->
-  <main id="login-screen" class="max-w-sm mx-auto px-6 pb-24">
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">CONNEXION</p>
-      <h2 class="font-display font-bold text-2xl mb-6">Accès admin</h2>
+<!-- CONTENU ADMIN -->
+<main id="admin-content" class="wrap hidden" style="padding-bottom:100px; padding-top:8px;">
 
-      <div class="field mb-4">
-        <label for="login-email">Email</label>
-        <input id="login-email" type="email" class="w-full mt-1 px-3.5 py-2.5" placeholder="votre@email.com" />
+  <div class="admin-tabs" role="tablist">
+    <button class="admin-tab active" data-tab="reglages">01 · Réglages</button>
+    <button class="admin-tab" data-tab="visuels">02 · Visuels</button>
+    <button class="admin-tab" data-tab="services">03 · Services</button>
+    <button class="admin-tab" data-tab="projets">04 · Projets</button>
+    <button class="admin-tab" data-tab="packs">05 · Packs</button>
+    <button class="admin-tab" data-tab="temoignages">06 · Témoignages</button>
+    <button class="admin-tab" data-tab="promotions">07 · Promotions</button>
+  </div>
+
+  <!-- 01 · RÉGLAGES DU SITE -->
+  <section class="admin-panel active" data-panel="reglages">
+    <div class="card" style="padding:28px 26px; margin-bottom:20px;">
+      <span class="admin-nav-pill">01 · Réglages du site</span>
+      <h2 style="font-size:24px; margin-bottom:6px;">Coordonnées &amp; réseaux</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:24px;">Ces informations remplacent celles de <code>config.js</code> partout sur le site (WhatsApp, footer, boutons de contact). Laissez un champ vide pour garder la valeur par défaut du fichier de configuration.</p>
+
+      <div class="grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div class="field"><label for="set-whatsapp">Numéro WhatsApp (format international, sans + ni espaces)</label><input id="set-whatsapp" type="text" style="padding:11px 14px;" placeholder="ex: 22790000000" /></div>
+        <div class="field"><label for="set-phone">Numéro de téléphone affiché</label><input id="set-phone" type="text" style="padding:11px 14px;" placeholder="ex: +227 90 00 00 00" /></div>
+        <div class="field"><label for="set-email">Email</label><input id="set-email" type="email" style="padding:11px 14px;" placeholder="contact@habibcreation.com" /></div>
+        <div class="field"><label for="set-location">Localisation</label><input id="set-location" type="text" style="padding:11px 14px;" placeholder="Niamey, Niger" /></div>
       </div>
-      <div class="field mb-2">
-        <label for="login-password">Mot de passe</label>
-        <input id="login-password" type="password" class="w-full mt-1 px-3.5 py-2.5" placeholder="••••••••" />
+      <div class="grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+        <div class="field"><label for="set-instagram">Instagram (lien complet)</label><input id="set-instagram" type="url" style="padding:11px 14px;" placeholder="https://instagram.com/habib.creation" /></div>
+        <div class="field"><label for="set-facebook">Facebook (lien complet)</label><input id="set-facebook" type="url" style="padding:11px 14px;" placeholder="https://facebook.com/habib.creation" /></div>
+        <div class="field"><label for="set-tiktok">TikTok (lien complet)</label><input id="set-tiktok" type="url" style="padding:11px 14px;" placeholder="https://tiktok.com/@habib.creation" /></div>
+        <div class="field"><label for="set-linkedin">LinkedIn (lien complet)</label><input id="set-linkedin" type="url" style="padding:11px 14px;" placeholder="https://linkedin.com/company/habib-creation" /></div>
       </div>
-      <p id="login-error" class="text-xs mb-4 hidden" style="color:#e11d48"></p>
+      <button id="save-settings" class="btn-grad">Enregistrer les réglages</button>
+    </div>
+  </section>
 
-      <button id="login-btn" class="btn-grad px-6 py-2.5 text-sm w-full">Se connecter</button>
-    </section>
-  </main>
-
-  <main id="admin-content" class="max-w-3xl mx-auto px-6 pb-24 space-y-8 hidden">
-
-    <!-- PROFIL -->
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">01 · PROFIL</p>
-      <h2 class="font-display font-bold text-2xl mb-6">Photo &amp; présentation</h2>
-
-      <div class="flex flex-col sm:flex-row gap-6 mb-6">
-        <div class="avatar-ring w-28 h-28 shrink-0 mx-auto sm:mx-0">
-          <img id="preview-photo" src="https://placehold.co/300x300/8b6cf2/ffffff?text=Photo" class="w-full h-full object-cover rounded-full" alt="Aperçu" />
+  <!-- 02 · VISUELS -->
+  <section class="admin-panel" data-panel="visuels">
+    <div class="card" style="padding:28px 26px; margin-bottom:20px;">
+      <span class="admin-nav-pill">Images du hero</span>
+      <h2 style="font-size:22px; margin-bottom:6px;">Photos affichées en haut de l'accueil</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">Les deux visuels superposés dans le bloc d'accueil. Format conseillé : portrait pour la grande image, paysage pour la petite.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div>
+          <div class="gallery-thumb" style="aspect-ratio:4/3;"><img id="hero1-preview" src="https://placehold.co/400x300/ecebfc/2a1f99?text=Image+1" alt="Aperçu image hero 1" /></div>
+          <label style="font-size:12px; font-weight:600; color:var(--ink-soft); display:block; margin:8px 0 2px;">Grande image (portrait)</label>
+          <input type="file" id="hero1-file" accept="image/*" style="border:none; background:none; padding:6px 0; font-size:13px;" />
         </div>
-        <div class="flex-1 space-y-3">
-          <div class="field">
-            <label>Changer la photo (fichier image)</label>
-            <input type="file" id="photo-input" accept="image/*" class="w-full text-sm mt-1" />
-          </div>
-          <p class="text-xs" style="color:var(--ink-soft)">L'image est redimensionnée automatiquement avant l'enregistrement.</p>
-        </div>
-      </div>
-
-      <div class="field mb-4">
-        <label for="name-input">Nom / titre affiché</label>
-        <input id="name-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="Votre nom" />
-      </div>
-
-      <div class="field mb-5">
-        <label for="bio-input">Texte de présentation</label>
-        <textarea id="bio-input" rows="4" class="w-full mt-1 px-3.5 py-2.5" placeholder="Décrivez-vous en quelques phrases"></textarea>
-      </div>
-
-      <button id="save-profile" class="btn-grad px-6 py-2.5 text-sm">Enregistrer le profil</button>
-    </section>
-
-    <!-- RESEAUX SOCIAUX -->
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">02 · CANAUX</p>
-      <h2 class="font-display font-bold text-2xl mb-2">Réseaux sociaux</h2>
-      <p class="text-sm mb-5" style="color:var(--ink-soft)">Laissez un champ vide pour masquer ce canal sur le site.</p>
-
-      <div class="grid sm:grid-cols-2 gap-4 mb-5">
-        <div class="field">
-          <label for="ig-input">Instagram (nom d'utilisateur)</label>
-          <input id="ig-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: votre_studio" />
-        </div>
-        <div class="field">
-          <label for="tg-input">Telegram (nom d'utilisateur)</label>
-          <input id="tg-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: votre_studio" />
-        </div>
-        <div class="field">
-          <label for="wa-input">WhatsApp (numéro avec indicatif)</label>
-          <input id="wa-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: 22790000000" />
-        </div>
-        <div class="field">
-          <label for="fb-input">Facebook (nom d'utilisateur ou lien)</label>
-          <input id="fb-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: votre.page ou https://facebook.com/..." />
-        </div>
-        <div class="field">
-          <label for="phone-input">Numéro d'appel</label>
-          <input id="phone-input" type="text" class="w-full mt-1 px-3.5 py-2.5" placeholder="ex: +22790000000" />
+        <div>
+          <div class="gallery-thumb" style="aspect-ratio:4/3;"><img id="hero2-preview" src="https://placehold.co/400x300/14131c/ffffff?text=Image+2" alt="Aperçu image hero 2" /></div>
+          <label style="font-size:12px; font-weight:600; color:var(--ink-soft); display:block; margin:8px 0 2px;">Petite image (paysage)</label>
+          <input type="file" id="hero2-file" accept="image/*" style="border:none; background:none; padding:6px 0; font-size:13px;" />
         </div>
       </div>
+    </div>
 
-      <button id="save-socials" class="btn-grad px-6 py-2.5 text-sm">Enregistrer les réseaux</button>
-    </section>
+    <div class="card" style="padding:28px 26px; margin-bottom:20px;">
+      <span class="admin-nav-pill">Avant / Après</span>
+      <h2 style="font-size:22px; margin-bottom:6px;">Comparateurs de la section « Avant / après »</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">Deux exemples affichés côte à côte, chacun avec une image « avant » et une image « après ».</p>
 
-    <!-- SERVICES -->
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">03 · CATALOGUE</p>
-      <h2 class="font-display font-bold text-2xl mb-6">Services</h2>
-
-      <div id="services-list" class="space-y-5 mb-6"></div>
-
-      <button id="add-service" class="btn-ghost px-5 py-2.5 text-sm">+ Ajouter un service</button>
-    </section>
-
-    <!-- GALERIE -->
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">04 · GALERIE</p>
-      <h2 class="font-display font-bold text-2xl mb-2">Galerie photo</h2>
-      <p class="text-sm mb-5" style="color:var(--ink-soft)">Ces images défilent automatiquement sur la page d'accueil.</p>
-
-      <div class="field mb-5">
-        <label>Ajouter des images</label>
-        <input type="file" id="gallery-input" accept="image/*" multiple class="w-full text-sm mt-1" />
+      <p style="font-size:13px; font-weight:700; margin-bottom:10px;">Exemple 1</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:14px;">
+        <div>
+          <div class="gallery-thumb" style="aspect-ratio:4/3;"><img id="c1before-preview" src="https://placehold.co/400x300/cbd5e1/475569?text=Avant" alt="Aperçu avant 1" /></div>
+          <label style="font-size:12px; font-weight:600; color:var(--ink-soft); display:block; margin:8px 0 2px;">Image « avant »</label>
+          <input type="file" id="c1before-file" accept="image/*" style="border:none; background:none; padding:6px 0; font-size:13px;" />
+        </div>
+        <div>
+          <div class="gallery-thumb" style="aspect-ratio:4/3;"><img id="c1after-preview" src="https://placehold.co/400x300/ecebfc/2a1f99?text=Apr%C3%A8s" alt="Aperçu après 1" /></div>
+          <label style="font-size:12px; font-weight:600; color:var(--ink-soft); display:block; margin:8px 0 2px;">Image « après »</label>
+          <input type="file" id="c1after-file" accept="image/*" style="border:none; background:none; padding:6px 0; font-size:13px;" />
+        </div>
       </div>
+      <div class="field" style="margin-bottom:26px; max-width:320px;"><label for="c1-caption">Légende</label><input id="c1-caption" type="text" style="padding:9px 12px;" placeholder="ex: Identité visuelle" /></div>
 
-      <div id="gallery-list" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
-    </section>
-
-    <!-- PARTAGE DU SITE -->
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">05 · PARTAGE</p>
-      <h2 class="font-display font-bold text-2xl mb-2">Lien à partager</h2>
-      <p class="text-sm mb-5" style="color:var(--ink-soft)">C'est ce lien qui sera utilisé par le bouton « Partager » sur le site.</p>
-
-      <div class="field mb-5">
-        <label for="site-link-input">Lien du site (URL)</label>
-        <input id="site-link-input" type="url" class="w-full mt-1 px-3.5 py-2.5" placeholder="https://habib-creation-service.web.app/Client.html" />
+      <p style="font-size:13px; font-weight:700; margin-bottom:10px;">Exemple 2</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:14px;">
+        <div>
+          <div class="gallery-thumb" style="aspect-ratio:4/3;"><img id="c2before-preview" src="https://placehold.co/400x300/cbd5e1/475569?text=Avant" alt="Aperçu avant 2" /></div>
+          <label style="font-size:12px; font-weight:600; color:var(--ink-soft); display:block; margin:8px 0 2px;">Image « avant »</label>
+          <input type="file" id="c2before-file" accept="image/*" style="border:none; background:none; padding:6px 0; font-size:13px;" />
+        </div>
+        <div>
+          <div class="gallery-thumb" style="aspect-ratio:4/3;"><img id="c2after-preview" src="https://placehold.co/400x300/14131c/ffffff?text=Apr%C3%A8s" alt="Aperçu après 2" /></div>
+          <label style="font-size:12px; font-weight:600; color:var(--ink-soft); display:block; margin:8px 0 2px;">Image « après »</label>
+          <input type="file" id="c2after-file" accept="image/*" style="border:none; background:none; padding:6px 0; font-size:13px;" />
+        </div>
       </div>
+      <div class="field" style="margin-bottom:22px; max-width:320px;"><label for="c2-caption">Légende</label><input id="c2-caption" type="text" style="padding:9px 12px;" placeholder="ex: Page web" /></div>
 
-      <button id="save-site-link" class="btn-grad px-6 py-2.5 text-sm">Enregistrer le lien</button>
-    </section>
+      <button id="save-visuals" class="btn-grad">Enregistrer les visuels</button>
+    </div>
+  </section>
 
-    <!-- PROMOTIONS -->
-    <section class="card p-6 sm:p-8">
-      <p class="text-xs font-semibold mb-1" style="color:var(--grad-2)">06 · PROMOTIONS</p>
-      <h2 class="font-display font-bold text-2xl mb-2">Annonces de promotion</h2>
-      <p class="text-sm mb-6" style="color:var(--ink-soft)">Ajoutez une ou plusieurs promotions. La première promotion active (en haut de la liste) apparaît dans le cadre flottant animé du site ; toutes les promotions actives apparaissent aussi dans la section « Promotions » visible par les visiteurs.</p>
+  <!-- 02 · SERVICES -->
+  <section class="admin-panel" data-panel="services">
+    <div class="card" style="padding:28px 26px;">
+      <span class="admin-nav-pill">03 · Catalogue</span>
+      <h2 style="font-size:24px; margin-bottom:6px;">Services</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">Affichés dans la section « Ce que je fais » de la page d'accueil.</p>
+      <div id="services-list" class="space-y-5" style="display:flex; flex-direction:column; gap:20px; margin-bottom:20px;"></div>
+      <button id="add-service" class="btn-ghost">+ Ajouter un service</button>
+    </div>
+  </section>
 
-      <div id="promotions-list" class="space-y-5 mb-6"></div>
+  <!-- 03 · PROJETS -->
+  <section class="admin-panel" data-panel="projets">
+    <div class="card" style="padding:28px 26px;">
+      <span class="admin-nav-pill">04 · Portfolio</span>
+      <h2 style="font-size:24px; margin-bottom:6px;">Projets</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">Affichés dans la galerie filtrable de la page d'accueil. Cochez « Projet concept » pour les projets fictifs de démonstration.</p>
+      <div id="projects-list" style="display:flex; flex-direction:column; gap:20px; margin-bottom:20px;"></div>
+      <button id="add-project" class="btn-ghost">+ Ajouter un projet</button>
+    </div>
+  </section>
 
-      <button id="add-promotion" class="btn-ghost px-5 py-2.5 text-sm">+ Ajouter une promotion</button>
-    </section>
+  <!-- 04 · PACKS -->
+  <section class="admin-panel" data-panel="packs">
+    <div class="card" style="padding:28px 26px;">
+      <span class="admin-nav-pill">05 · Offres</span>
+      <h2 style="font-size:24px; margin-bottom:6px;">Packs</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">Laissez le prix en « Sur devis » tant que vos tarifs définitifs ne sont pas fixés — n'inventez pas de montants ici, ils seront affichés tels quels sur le site.</p>
+      <div id="packs-list" style="display:flex; flex-direction:column; gap:20px; margin-bottom:20px;"></div>
+      <button id="add-pack" class="btn-ghost">+ Ajouter un pack</button>
+    </div>
+  </section>
 
-  </main>
+  <!-- 05 · TÉMOIGNAGES -->
+  <section class="admin-panel" data-panel="temoignages">
+    <div class="card" style="padding:28px 26px;">
+      <span class="admin-nav-pill">06 · Confiance</span>
+      <h2 style="font-size:24px; margin-bottom:6px;">Témoignages</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">N'ajoutez que des témoignages réels de vos clients. Tant qu'aucun témoignage n'est ajouté ici, le site affiche des emplacements réservés clairement identifiés.</p>
+      <div id="testimonials-list" style="display:flex; flex-direction:column; gap:20px; margin-bottom:20px;"></div>
+      <button id="add-testimonial" class="btn-ghost">+ Ajouter un témoignage</button>
+    </div>
+  </section>
 
-  <div id="toast" class="toast"></div>
+  <!-- 06 · PROMOTIONS -->
+  <section class="admin-panel" data-panel="promotions">
+    <div class="card" style="padding:28px 26px;">
+      <span class="admin-nav-pill">07 · Conversion</span>
+      <h2 style="font-size:24px; margin-bottom:6px;">Promotions</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:22px;">La première promotion active apparaît en widget flottant sur le site. Laissez la liste vide pour ne rien afficher.</p>
+      <div id="promotions-list" style="display:flex; flex-direction:column; gap:20px; margin-bottom:20px;"></div>
+      <button id="add-promotion" class="btn-ghost">+ Ajouter une promotion</button>
+    </div>
+  </section>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script>
-  // ============================================================
-  // CONFIGURATION FIREBASE — remplace ces valeurs par les tiennes
-  // (les mêmes que dans index.html)
-  // ============================================================
-  const firebaseConfig = {
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="/assets/js/admin-crud.js"></script>
+<script>
+/* ============================================================
+   CONFIGURATION FIREBASE — identique à celle du site public
+   ============================================================ */
+const firebaseConfig = {
   apiKey: "AIzaSyBBmz7Tg7ZhWde3f0WEYFDkDQE6h0B9Dlw",
   authDomain: "habib-creation-service.firebaseapp.com",
   projectId: "habib-creation-service",
@@ -293,558 +282,220 @@ body {
   messagingSenderId: "676176613725",
   appId: "1:676176613725:web:22a617df879f846a5798b4"
 };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const auth = firebase.auth();
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const auth = firebase.auth();
 
-  // ---- bibliothèque d'icônes pour les services (Bootstrap Icons) ----
-  const SERVICE_ICONS = {
-    palette: "bi-palette2",
-    printer: "bi-printer-fill",
-    share: "bi-share-fill",
-    code: "bi-code-slash",
-    camera: "bi-camera-fill",
-    megaphone: "bi-megaphone-fill",
-    chat: "bi-chat-dots-fill",
-    star: "bi-star-fill"
+/* ---------- Onglets ---------- */
+document.querySelectorAll(".admin-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".admin-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".admin-panel").forEach(p => p.classList.remove("active"));
+    tab.classList.add("active");
+    document.querySelector(`.admin-panel[data-panel="${tab.dataset.tab}"]`).classList.add("active");
+  });
+});
+
+/* ---------- 01 · Réglages du site ---------- */
+async function loadSettings() {
+  try {
+    const snap = await db.collection("config").doc("site").get();
+    if (!snap.exists) return;
+    const d = snap.data();
+    document.getElementById("set-whatsapp").value = d.whatsapp || "";
+    document.getElementById("set-phone").value = d.phone || "";
+    document.getElementById("set-email").value = d.email || "";
+    document.getElementById("set-location").value = d.location || "";
+    document.getElementById("set-instagram").value = d.instagram || "";
+    document.getElementById("set-facebook").value = d.facebook || "";
+    document.getElementById("set-tiktok").value = d.tiktok || "";
+    document.getElementById("set-linkedin").value = d.linkedin || "";
+
+    if (d.heroImage1) document.getElementById("hero1-preview").src = d.heroImage1;
+    if (d.heroImage2) document.getElementById("hero2-preview").src = d.heroImage2;
+    if (d.compare1Before) document.getElementById("c1before-preview").src = d.compare1Before;
+    if (d.compare1After) document.getElementById("c1after-preview").src = d.compare1After;
+    if (d.compare2Before) document.getElementById("c2before-preview").src = d.compare2Before;
+    if (d.compare2After) document.getElementById("c2after-preview").src = d.compare2After;
+    document.getElementById("c1-caption").value = d.compare1Caption || "";
+    document.getElementById("c2-caption").value = d.compare2Caption || "";
+  } catch (err) { console.warn("Réglages : impossible de charger.", err); }
+}
+document.getElementById("save-settings").addEventListener("click", async () => {
+  const payload = {
+    whatsapp: document.getElementById("set-whatsapp").value.trim(),
+    phone: document.getElementById("set-phone").value.trim(),
+    email: document.getElementById("set-email").value.trim(),
+    location: document.getElementById("set-location").value.trim(),
+    instagram: document.getElementById("set-instagram").value.trim(),
+    facebook: document.getElementById("set-facebook").value.trim(),
+    tiktok: document.getElementById("set-tiktok").value.trim(),
+    linkedin: document.getElementById("set-linkedin").value.trim()
   };
-  const ICON_KEYS = Object.keys(SERVICE_ICONS);
+  try {
+    await db.collection("config").doc("site").set(payload, { merge: true });
+    showToast("Réglages enregistrés ✓");
+  } catch (err) { showToast("Erreur — vérifiez la configuration Firebase"); console.error(err); }
+});
 
-  function showToast(msg) {
-    const t = document.getElementById("toast");
-    t.textContent = msg;
-    t.classList.add("show");
-    setTimeout(() => t.classList.remove("show"), 2200);
-  }
-
-  function resizeImageToBase64(file, maxSize = 480, quality = 0.82) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const img = new Image();
-        img.onload = () => {
-          let { width, height } = img;
-          if (width > height && width > maxSize) { height = Math.round((height * maxSize) / width); width = maxSize; }
-          else if (height > maxSize) { width = Math.round((width * maxSize) / height); height = maxSize; }
-          const canvas = document.createElement("canvas");
-          canvas.width = width; canvas.height = height;
-          canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-          resolve(canvas.toDataURL("image/jpeg", quality));
-        };
-        img.onerror = reject;
-        img.src = e.target.result;
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  // ---------- PROFIL ----------
-  let pendingPhotoBase64 = null;
-
-  async function loadProfile() {
-    try {
-      const snap = await db.collection("config").doc("profile").get();
-      if (snap.exists) {
-        const data = snap.data();
-        document.getElementById("name-input").value = data.name || "";
-        document.getElementById("bio-input").value = data.bio || "";
-        if (data.photoUrl) document.getElementById("preview-photo").src = data.photoUrl;
-      }
-    } catch (err) { console.warn("Impossible de charger le profil :", err); }
-  }
-
-  document.getElementById("photo-input").addEventListener("change", async e => {
+/* ---------- Images du hero + avant/après (mêmes doc "config/site") ---------- */
+const pendingVisuals = {};
+function wireImageField(fileId, previewId, key) {
+  document.getElementById(fileId).addEventListener("change", async e => {
     const file = e.target.files[0];
     if (!file) return;
-    pendingPhotoBase64 = await resizeImageToBase64(file);
-    document.getElementById("preview-photo").src = pendingPhotoBase64;
+    const base64 = await resizeImageToBase64(file, 900, 0.82);
+    pendingVisuals[key] = base64;
+    document.getElementById(previewId).src = base64;
   });
+}
+wireImageField("hero1-file", "hero1-preview", "heroImage1");
+wireImageField("hero2-file", "hero2-preview", "heroImage2");
+wireImageField("c1before-file", "c1before-preview", "compare1Before");
+wireImageField("c1after-file", "c1after-preview", "compare1After");
+wireImageField("c2before-file", "c2before-preview", "compare2Before");
+wireImageField("c2after-file", "c2after-preview", "compare2After");
 
-  document.getElementById("save-profile").addEventListener("click", async () => {
-    const payload = {
-      name: document.getElementById("name-input").value.trim(),
-      bio: document.getElementById("bio-input").value.trim()
-    };
-    if (pendingPhotoBase64) payload.photoUrl = pendingPhotoBase64;
-    try {
-      await db.collection("config").doc("profile").set(payload, { merge: true });
-      showToast("Profil enregistré ✓");
-    } catch (err) {
-      showToast("Erreur — vérifiez la configuration Firebase");
-      console.error(err);
+document.getElementById("save-visuals").addEventListener("click", async () => {
+  const payload = {
+    ...pendingVisuals,
+    compare1Caption: document.getElementById("c1-caption").value.trim(),
+    compare2Caption: document.getElementById("c2-caption").value.trim()
+  };
+  try {
+    await db.collection("config").doc("site").set(payload, { merge: true });
+    showToast("Visuels enregistrés ✓");
+  } catch (err) { showToast("Erreur — vérifiez la configuration Firebase"); console.error(err); }
+});
+
+/* ---------- 02 · Services ---------- */
+const servicesSection = createCrudSection({
+  db, collectionName: "services", listElId: "services-list", addBtnId: "add-service",
+  requiredKeys: ["title"],
+  defaults: { icon: "palette", title: "", description: "", waMessage: "", imageUrl: "" },
+  schema: [
+    { key: "imageUrl", label: "Image (facultative)", type: "image" },
+    { key: "icon", label: "Icône", type: "select", half: true, options: [
+      { value: "palette", label: "Palette (design)" }, { value: "pen", label: "Plume (identité)" },
+      { value: "code", label: "Code (web)" }, { value: "bag", label: "Sac (e-commerce)" },
+      { value: "megaphone", label: "Mégaphone (marketing)" }, { value: "cpu", label: "Puce (digital)" },
+      { value: "printer", label: "Imprimante" }, { value: "camera", label: "Caméra" }, { value: "star", label: "Étoile" }
+    ]},
+    { key: "title", label: "Titre", type: "text", half: true, placeholder: "ex: Design graphique" },
+    { key: "description", label: "Description courte", type: "textarea", placeholder: "Une phrase qui décrit ce service" },
+    { key: "waMessage", label: "Message WhatsApp pré-rempli", type: "text", placeholder: "Bonjour Habib Création, je souhaite..." }
+  ]
+});
+
+/* ---------- 03 · Projets ---------- */
+const projectsSection = createCrudSection({
+  db, collectionName: "projects", listElId: "projects-list", addBtnId: "add-project",
+  requiredKeys: ["title"],
+  defaults: { title: "", category: "design", description: "", whatsappMessage: "", concept: true, imageUrl: "" },
+  schema: [
+    { key: "imageUrl", label: "Image", type: "image" },
+    { key: "title", label: "Titre du projet", type: "text", placeholder: "ex: Boutique de vêtements" },
+    { key: "category", label: "Catégories", type: "categories" },
+    { key: "description", label: "Description courte", type: "textarea" },
+    { key: "whatsappMessage", label: "Message WhatsApp pré-rempli", type: "text", placeholder: "Bonjour Habib Création, ce projet m'intéresse..." },
+    { key: "concept", label: "Projet concept (fictif, à but de démonstration)", type: "checkbox" }
+  ]
+});
+
+/* ---------- 04 · Packs ---------- */
+const packsSection = createCrudSection({
+  db, collectionName: "packs", listElId: "packs-list", addBtnId: "add-pack",
+  requiredKeys: ["name"],
+  defaults: { name: "", forWho: "", priceLabel: "Sur devis", featured: false, features: [] },
+  schema: [
+    { key: "name", label: "Nom du pack", type: "text", half: true, placeholder: "ex: Pack Business" },
+    { key: "priceLabel", label: "Prix affiché", type: "text", half: true, placeholder: "Sur devis / À partir de 50 000 FCFA" },
+    { key: "forWho", label: "Pour qui", type: "text", placeholder: "ex: Pour développer une présence professionnelle" },
+    { key: "features", label: "Contenu du pack", type: "features", rows: 5 },
+    { key: "featured", label: "Mettre en avant (« le plus demandé »)", type: "checkbox" }
+  ]
+});
+
+/* ---------- 05 · Témoignages ---------- */
+const testimonialsSection = createCrudSection({
+  db, collectionName: "testimonials", listElId: "testimonials-list", addBtnId: "add-testimonial",
+  requiredKeys: ["name", "quote"],
+  defaults: { name: "", role: "", quote: "", rating: "5", avatarUrl: "" },
+  schema: [
+    { key: "avatarUrl", label: "Photo", type: "image" },
+    { key: "name", label: "Nom du client", type: "text", half: true },
+    { key: "role", label: "Entreprise / rôle", type: "text", half: true },
+    { key: "quote", label: "Témoignage", type: "textarea" },
+    { key: "rating", label: "Note", type: "select", options: [
+      { value: "5", label: "★★★★★ (5/5)" }, { value: "4", label: "★★★★☆ (4/5)" },
+      { value: "3", label: "★★★☆☆ (3/5)" }, { value: "2", label: "★★☆☆☆ (2/5)" }, { value: "1", label: "★☆☆☆☆ (1/5)" }
+    ]}
+  ]
+});
+
+/* ---------- 07 · Promotions ---------- */
+const promotionsSection = createCrudSection({
+  db, collectionName: "promotions", listElId: "promotions-list", addBtnId: "add-promotion",
+  requiredKeys: ["title", "promoPrice"],
+  defaults: { badge: "Promo", title: "", description: "", normalPrice: "", promoPrice: "", buttonText: "Profiter de l'offre", imageUrl: "" },
+  schema: [
+    { key: "imageUrl", label: "Image", type: "image" },
+    { key: "badge", label: "Étiquette", type: "text", half: true, placeholder: "ex: Promo, -20%, Nouveau" },
+    { key: "title", label: "Titre", type: "text", half: true, placeholder: "ex: Pack identité visuelle" },
+    { key: "description", label: "Description courte", type: "textarea", rows: 2 },
+    { key: "normalPrice", label: "Prix normal", type: "text", half: true, placeholder: "ex: 25 000 FCFA" },
+    { key: "promoPrice", label: "Prix promotionnel", type: "text", half: true, placeholder: "ex: 15 000 FCFA" },
+    { key: "buttonText", label: "Texte du bouton", type: "text", placeholder: "ex: Profiter de l'offre" }
+  ]
+});
+
+/* ---------- Authentification ---------- */
+const loginScreen = document.getElementById("login-screen");
+const adminContent = document.getElementById("admin-content");
+const logoutBtn = document.getElementById("logout-btn");
+const loginError = document.getElementById("login-error");
+let dataLoaded = false;
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    loginScreen.classList.add("hidden");
+    adminContent.classList.remove("hidden");
+    logoutBtn.classList.remove("hidden");
+    if (!dataLoaded) {
+      dataLoaded = true;
+      loadSettings();
+      servicesSection.loadAll();
+      projectsSection.loadAll();
+      packsSection.loadAll();
+      testimonialsSection.loadAll();
+      promotionsSection.loadAll();
     }
+  } else {
+    loginScreen.classList.remove("hidden");
+    adminContent.classList.add("hidden");
+    logoutBtn.classList.add("hidden");
+  }
+});
+
+document.getElementById("login-btn").addEventListener("click", () => {
+  const email = document.getElementById("login-email").value.trim();
+  const password = document.getElementById("login-password").value;
+  loginError.classList.add("hidden");
+  if (!email || !password) {
+    loginError.textContent = "Merci de remplir l'email et le mot de passe.";
+    loginError.classList.remove("hidden");
+    return;
+  }
+  auth.signInWithEmailAndPassword(email, password).catch(err => {
+    loginError.textContent = "Connexion impossible : email ou mot de passe incorrect.";
+    loginError.classList.remove("hidden");
+    console.error(err);
   });
-
-  // ---------- RESEAUX SOCIAUX ----------
-  async function loadSocials() {
-    try {
-      const snap = await db.collection("config").doc("socials").get();
-      if (snap.exists) {
-        const data = snap.data();
-        document.getElementById("ig-input").value = data.instagram || "";
-        document.getElementById("tg-input").value = data.telegram || "";
-        document.getElementById("wa-input").value = data.whatsapp || "";
-        document.getElementById("fb-input").value = data.facebook || "";
-        document.getElementById("phone-input").value = data.phone || "";
-      }
-    } catch (err) { console.warn("Impossible de charger les réseaux :", err); }
-  }
-
-  document.getElementById("save-socials").addEventListener("click", async () => {
-    const payload = {
-      instagram: document.getElementById("ig-input").value.trim(),
-      telegram: document.getElementById("tg-input").value.trim(),
-      whatsapp: document.getElementById("wa-input").value.trim(),
-      facebook: document.getElementById("fb-input").value.trim(),
-      phone: document.getElementById("phone-input").value.trim()
-    };
-    try {
-      await db.collection("config").doc("socials").set(payload, { merge: true });
-      showToast("Réseaux enregistrés ✓");
-    } catch (err) {
-      showToast("Erreur — vérifiez la configuration Firebase");
-      console.error(err);
-    }
-  });
-
-  // ---------- SERVICES ----------
-  async function loadServices() {
-    const list = document.getElementById("services-list");
-    list.innerHTML = "";
-    try {
-      const snap = await db.collection("services").orderBy("order").get();
-      snap.docs.forEach(doc => renderServiceRow({ id: doc.id, ...doc.data() }));
-    } catch (err) { console.warn("Impossible de charger les services :", err); }
-  }
-
-  function renderServiceRow(service) {
-    const list = document.getElementById("services-list");
-    const row = document.createElement("div");
-    row.className = "border rounded-2xl p-4 sm:p-5";
-    row.style.borderColor = "var(--ring)";
-    const selectedIcon = service.icon && SERVICE_ICONS[service.icon] ? service.icon : "star";
-
-    row.innerHTML = `
-      <div class="grid gap-3">
-        <div class="field">
-          <label>Icône</label>
-          <div class="icon-grid flex flex-wrap gap-2 mt-1"></div>
-        </div>
-        <div class="field">
-          <label>Titre</label>
-          <input type="text" class="w-full mt-1 px-3.5 py-2.5 svc-title" value="${escapeAttr(service.title || "")}" />
-        </div>
-        <div class="field">
-          <label>Description</label>
-          <textarea rows="2" class="w-full mt-1 px-3.5 py-2.5 svc-desc">${escapeHtml(service.description || "")}</textarea>
-        </div>
-        <div class="flex flex-wrap items-center gap-4 justify-between pt-1">
-          <label class="text-xs flex items-center gap-2 font-medium" style="color:var(--ink-soft)">
-            <input type="checkbox" class="svc-active" ${service.active !== false ? "checked" : ""}/> Actif (visible sur le site)
-          </label>
-          <div class="flex gap-2">
-            <button class="btn-ghost px-3 py-1.5 text-xs svc-up" title="Monter">↑</button>
-            <button class="btn-ghost px-3 py-1.5 text-xs svc-down" title="Descendre">↓</button>
-            <button class="btn-grad px-4 py-1.5 text-xs svc-save">Enregistrer</button>
-            <button class="btn-ghost px-3 py-1.5 text-xs svc-delete">Supprimer</button>
-          </div>
-        </div>
-      </div>
-    `;
-    row.dataset.id = service.id || "";
-    row.dataset.order = service.order || 99;
-    row.dataset.icon = selectedIcon;
-
-    const iconGrid = row.querySelector(".icon-grid");
-    ICON_KEYS.forEach(key => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "icon-pick" + (key === selectedIcon ? " selected" : "");
-      btn.innerHTML = `<i class="bi ${SERVICE_ICONS[key]}"></i>`;
-      btn.dataset.icon = key;
-      btn.addEventListener("click", () => {
-        row.dataset.icon = key;
-        iconGrid.querySelectorAll(".icon-pick").forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
-      });
-      iconGrid.appendChild(btn);
-    });
-
-    row.querySelector(".svc-save").addEventListener("click", () => saveServiceRow(row));
-    row.querySelector(".svc-delete").addEventListener("click", () => deleteServiceRow(row));
-    row.querySelector(".svc-up").addEventListener("click", () => moveServiceRow(row, -1));
-    row.querySelector(".svc-down").addEventListener("click", () => moveServiceRow(row, 1));
-
-    list.appendChild(row);
-  }
-
-  async function saveServiceRow(row) {
-    const title = row.querySelector(".svc-title").value.trim();
-    const description = row.querySelector(".svc-desc").value.trim();
-    const active = row.querySelector(".svc-active").checked;
-    const order = Number(row.dataset.order) || 1;
-    const icon = row.dataset.icon || "star";
-    if (!title) { showToast("Le titre est obligatoire"); return; }
-    try {
-      if (row.dataset.id) {
-        await db.collection("services").doc(row.dataset.id).set({ title, description, active, order, icon }, { merge: true });
-      } else {
-        const ref = await db.collection("services").add({ title, description, active, order, icon });
-        row.dataset.id = ref.id;
-      }
-      showToast("Service enregistré ✓");
-    } catch (err) {
-      showToast("Erreur — vérifiez la configuration Firebase");
-      console.error(err);
-    }
-  }
-
-  async function deleteServiceRow(row) {
-    if (!confirm("Supprimer ce service ?")) return;
-    try {
-      if (row.dataset.id) await db.collection("services").doc(row.dataset.id).delete();
-      row.remove();
-      showToast("Service supprimé");
-    } catch (err) {
-      showToast("Erreur lors de la suppression");
-      console.error(err);
-    }
-  }
-
-  function moveServiceRow(row, direction) {
-    const sibling = direction < 0 ? row.previousElementSibling : row.nextElementSibling;
-    if (!sibling) return;
-    const list = document.getElementById("services-list");
-    if (direction < 0) list.insertBefore(row, sibling);
-    else list.insertBefore(sibling, row);
-    reindexOrders();
-  }
-
-  async function reindexOrders() {
-    const rows = [...document.querySelectorAll("#services-list > div")];
-    const updates = rows.map((row, i) => {
-      row.dataset.order = i + 1;
-      if (row.dataset.id) return db.collection("services").doc(row.dataset.id).set({ order: i + 1 }, { merge: true });
-      return Promise.resolve();
-    });
-    try { await Promise.all(updates); } catch (err) { console.warn("Erreur de réordonnancement :", err); }
-  }
-
-  document.getElementById("add-service").addEventListener("click", () => {
-    const count = document.getElementById("services-list").children.length;
-    renderServiceRow({ id: "", title: "", description: "", active: true, order: count + 1, icon: "star" });
-  });
-
-  function escapeHtml(str) { const div = document.createElement("div"); div.textContent = str; return div.innerHTML; }
-  function escapeAttr(str) { return escapeHtml(str).replace(/"/g, "&quot;"); }
-
-  // ---------- GALERIE ----------
-  async function loadGallery() {
-    const list = document.getElementById("gallery-list");
-    list.innerHTML = "";
-    try {
-      const snap = await db.collection("gallery").orderBy("order").get();
-      snap.docs.forEach(doc => renderGalleryThumb({ id: doc.id, ...doc.data() }));
-    } catch (err) { console.warn("Impossible de charger la galerie :", err); }
-  }
-
-  function renderGalleryThumb(item) {
-    const list = document.getElementById("gallery-list");
-    const thumb = document.createElement("div");
-    thumb.className = "gallery-thumb";
-    thumb.dataset.id = item.id || "";
-    thumb.dataset.order = item.order || 99;
-    thumb.innerHTML = `
-      <img src="${escapeAttr(item.imageUrl || "")}" alt="Image galerie" />
-      <div class="gthumb-actions">
-        <button type="button" class="gthumb-btn gth-left" title="Monter">←</button>
-        <div class="flex gap-1.5">
-          <button type="button" class="gthumb-btn gth-right" title="Descendre">→</button>
-          <button type="button" class="gthumb-btn gth-delete" title="Supprimer">✕</button>
-        </div>
-      </div>
-    `;
-    thumb.querySelector(".gth-delete").addEventListener("click", () => deleteGalleryThumb(thumb));
-    thumb.querySelector(".gth-left").addEventListener("click", () => moveGalleryThumb(thumb, -1));
-    thumb.querySelector(".gth-right").addEventListener("click", () => moveGalleryThumb(thumb, 1));
-    list.appendChild(thumb);
-  }
-
-  document.getElementById("gallery-input").addEventListener("change", async e => {
-    const files = [...e.target.files];
-    if (!files.length) return;
-    const list = document.getElementById("gallery-list");
-    for (const file of files) {
-      try {
-        const base64 = await resizeImageToBase64(file, 900, 0.8);
-        const order = list.children.length + 1;
-        const ref = await db.collection("gallery").add({ imageUrl: base64, order });
-        renderGalleryThumb({ id: ref.id, imageUrl: base64, order });
-      } catch (err) {
-        showToast("Erreur — vérifiez la configuration Firebase");
-        console.error(err);
-      }
-    }
-    showToast("Image(s) ajoutée(s) ✓");
-    e.target.value = "";
-  });
-
-  async function deleteGalleryThumb(thumb) {
-    if (!confirm("Supprimer cette image ?")) return;
-    try {
-      if (thumb.dataset.id) await db.collection("gallery").doc(thumb.dataset.id).delete();
-      thumb.remove();
-      showToast("Image supprimée");
-    } catch (err) {
-      showToast("Erreur lors de la suppression");
-      console.error(err);
-    }
-  }
-
-  function moveGalleryThumb(thumb, direction) {
-    const sibling = direction < 0 ? thumb.previousElementSibling : thumb.nextElementSibling;
-    if (!sibling) return;
-    const list = document.getElementById("gallery-list");
-    if (direction < 0) list.insertBefore(thumb, sibling);
-    else list.insertBefore(sibling, thumb);
-    reindexGalleryOrders();
-  }
-
-  async function reindexGalleryOrders() {
-    const thumbs = [...document.querySelectorAll("#gallery-list > div")];
-    const updates = thumbs.map((thumb, i) => {
-      thumb.dataset.order = i + 1;
-      if (thumb.dataset.id) return db.collection("gallery").doc(thumb.dataset.id).set({ order: i + 1 }, { merge: true });
-      return Promise.resolve();
-    });
-    try { await Promise.all(updates); } catch (err) { console.warn("Erreur de réordonnancement galerie :", err); }
-  }
-
-  // ---------- PARTAGE DU SITE (lien) ----------
-  async function loadSiteLink() {
-    try {
-      const snap = await db.collection("config").doc("site").get();
-      const input = document.getElementById("site-link-input");
-      if (snap.exists && snap.data().link) {
-        input.value = snap.data().link;
-      } else {
-        input.value = window.location.origin + "/Client.html";
-      }
-    } catch (err) { console.warn("Impossible de charger le lien du site :", err); }
-  }
-
-  document.getElementById("save-site-link").addEventListener("click", async () => {
-    const link = document.getElementById("site-link-input").value.trim();
-    if (!link) { showToast("Merci de renseigner un lien"); return; }
-    try {
-      await db.collection("config").doc("site").set({ link }, { merge: true });
-      showToast("Lien enregistré ✓");
-    } catch (err) {
-      showToast("Erreur — vérifiez la configuration Firebase");
-      console.error(err);
-    }
-  });
-
-  // ---------- PROMOTIONS ----------
-  async function loadPromotions() {
-    const list = document.getElementById("promotions-list");
-    list.innerHTML = "";
-    try {
-      const snap = await db.collection("promotions").orderBy("order").get();
-      snap.docs.forEach(doc => renderPromotionRow({ id: doc.id, ...doc.data() }));
-    } catch (err) { console.warn("Impossible de charger les promotions :", err); }
-  }
-
-  function renderPromotionRow(promo) {
-    const list = document.getElementById("promotions-list");
-    const row = document.createElement("div");
-    row.className = "border rounded-2xl p-4 sm:p-5";
-    row.style.borderColor = "var(--ring)";
-    row.dataset.id = promo.id || "";
-    row.dataset.order = promo.order || 99;
-    row.dataset.image = promo.imageUrl || "";
-
-    row.innerHTML = `
-      <div class="flex flex-col sm:flex-row gap-4 mb-4">
-        <div class="w-full sm:w-32 shrink-0">
-          <div class="gallery-thumb" style="aspect-ratio:4/3;">
-            <img class="promo-row-preview" src="${escapeAttr(promo.imageUrl || "https://placehold.co/400x300/8b6cf2/ffffff?text=Image+promo")}" alt="Aperçu promotion" />
-          </div>
-          <input type="file" accept="image/*" class="promo-row-photo w-full text-xs mt-2" />
-        </div>
-        <div class="flex-1 grid gap-3">
-          <div class="grid sm:grid-cols-2 gap-3">
-            <div class="field">
-              <label>Étiquette (badge)</label>
-              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-badge" value="${escapeAttr(promo.badge || "")}" placeholder="ex: Promo, -20%, Nouveau" />
-            </div>
-            <div class="field">
-              <label>Titre</label>
-              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-title" value="${escapeAttr(promo.title || "")}" placeholder="ex: Pack identité visuelle" />
-            </div>
-          </div>
-          <div class="field">
-            <label>Description courte</label>
-            <textarea rows="2" class="w-full mt-1 px-3.5 py-2.5 promo-desc" placeholder="Décrivez brièvement l'offre">${escapeHtml(promo.description || "")}</textarea>
-          </div>
-          <div class="grid sm:grid-cols-2 gap-3">
-            <div class="field">
-              <label>Prix normal</label>
-              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-normal" value="${escapeAttr(promo.normalPrice || "")}" placeholder="ex: 25 000 FCFA" />
-            </div>
-            <div class="field">
-              <label>Prix promotionnel</label>
-              <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-promo" value="${escapeAttr(promo.promoPrice || "")}" placeholder="ex: 15 000 FCFA" />
-            </div>
-          </div>
-          <div class="field">
-            <label>Texte du bouton</label>
-            <input type="text" class="w-full mt-1 px-3.5 py-2.5 promo-btntext" value="${escapeAttr(promo.buttonText || "")}" placeholder="ex: Profiter de l'offre" />
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-wrap items-center gap-4 justify-between pt-1">
-        <label class="text-xs flex items-center gap-2 font-medium" style="color:var(--ink-soft)">
-          <input type="checkbox" class="promo-active" ${promo.active !== false ? "checked" : ""}/> Active (visible sur le site)
-        </label>
-        <div class="flex gap-2">
-          <button class="btn-ghost px-3 py-1.5 text-xs promo-up" title="Monter">↑</button>
-          <button class="btn-ghost px-3 py-1.5 text-xs promo-down" title="Descendre">↓</button>
-          <button class="btn-grad px-4 py-1.5 text-xs promo-save">Enregistrer</button>
-          <button class="btn-ghost px-3 py-1.5 text-xs promo-delete">Supprimer</button>
-        </div>
-      </div>
-    `;
-
-    row.querySelector(".promo-row-photo").addEventListener("change", async e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const base64 = await resizeImageToBase64(file, 700, 0.8);
-      row.dataset.image = base64;
-      row.querySelector(".promo-row-preview").src = base64;
-    });
-
-    row.querySelector(".promo-save").addEventListener("click", () => savePromotionRow(row));
-    row.querySelector(".promo-delete").addEventListener("click", () => deletePromotionRow(row));
-    row.querySelector(".promo-up").addEventListener("click", () => movePromotionRow(row, -1));
-    row.querySelector(".promo-down").addEventListener("click", () => movePromotionRow(row, 1));
-
-    list.appendChild(row);
-  }
-
-  async function savePromotionRow(row) {
-    const title = row.querySelector(".promo-title").value.trim();
-    const badge = row.querySelector(".promo-badge").value.trim();
-    const description = row.querySelector(".promo-desc").value.trim();
-    const normalPrice = row.querySelector(".promo-normal").value.trim();
-    const promoPrice = row.querySelector(".promo-promo").value.trim();
-    const buttonText = row.querySelector(".promo-btntext").value.trim();
-    const active = row.querySelector(".promo-active").checked;
-    const order = Number(row.dataset.order) || 1;
-    const imageUrl = row.dataset.image || "";
-    if (!title) { showToast("Le titre est obligatoire"); return; }
-    if (!promoPrice) { showToast("Merci d'indiquer le prix promotionnel"); return; }
-    const payload = { title, badge, description, normalPrice, promoPrice, buttonText, active, order, imageUrl };
-    try {
-      if (row.dataset.id) {
-        await db.collection("promotions").doc(row.dataset.id).set(payload, { merge: true });
-      } else {
-        const ref = await db.collection("promotions").add(payload);
-        row.dataset.id = ref.id;
-      }
-      showToast("Promotion enregistrée ✓");
-    } catch (err) {
-      showToast("Erreur — vérifiez la configuration Firebase");
-      console.error(err);
-    }
-  }
-
-  async function deletePromotionRow(row) {
-    if (!confirm("Supprimer cette promotion ?")) return;
-    try {
-      if (row.dataset.id) await db.collection("promotions").doc(row.dataset.id).delete();
-      row.remove();
-      showToast("Promotion supprimée");
-    } catch (err) {
-      showToast("Erreur lors de la suppression");
-      console.error(err);
-    }
-  }
-
-  function movePromotionRow(row, direction) {
-    const sibling = direction < 0 ? row.previousElementSibling : row.nextElementSibling;
-    if (!sibling) return;
-    const list = document.getElementById("promotions-list");
-    if (direction < 0) list.insertBefore(row, sibling);
-    else list.insertBefore(sibling, row);
-    reindexPromotionOrders();
-  }
-
-  async function reindexPromotionOrders() {
-    const rows = [...document.querySelectorAll("#promotions-list > div")];
-    const updates = rows.map((row, i) => {
-      row.dataset.order = i + 1;
-      if (row.dataset.id) return db.collection("promotions").doc(row.dataset.id).set({ order: i + 1 }, { merge: true });
-      return Promise.resolve();
-    });
-    try { await Promise.all(updates); } catch (err) { console.warn("Erreur de réordonnancement des promotions :", err); }
-  }
-
-  document.getElementById("add-promotion").addEventListener("click", () => {
-    const count = document.getElementById("promotions-list").children.length;
-    renderPromotionRow({ id: "", title: "", badge: "Promo", description: "", normalPrice: "", promoPrice: "", buttonText: "Profiter de l'offre", active: true, order: count + 1, imageUrl: "" });
-  });
-
-  // ---------- AUTHENTIFICATION ----------
-  const loginScreen = document.getElementById("login-screen");
-  const adminContent = document.getElementById("admin-content");
-  const logoutBtn = document.getElementById("logout-btn");
-  const loginError = document.getElementById("login-error");
-  let dataLoaded = false;
-
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      loginScreen.classList.add("hidden");
-      adminContent.classList.remove("hidden");
-      logoutBtn.classList.remove("hidden");
-      if (!dataLoaded) {
-        dataLoaded = true;
-        loadProfile();
-        loadSocials();
-        loadServices();
-        loadGallery();
-        loadSiteLink();
-        loadPromotions();
-      }
-    } else {
-      loginScreen.classList.remove("hidden");
-      adminContent.classList.add("hidden");
-      logoutBtn.classList.add("hidden");
-    }
-  });
-
-  document.getElementById("login-btn").addEventListener("click", () => {
-    const email = document.getElementById("login-email").value.trim();
-    const password = document.getElementById("login-password").value;
-    loginError.classList.add("hidden");
-    if (!email || !password) {
-      loginError.textContent = "Merci de remplir l'email et le mot de passe.";
-      loginError.classList.remove("hidden");
-      return;
-    }
-    auth.signInWithEmailAndPassword(email, password).catch(err => {
-      loginError.textContent = "Connexion impossible : email ou mot de passe incorrect.";
-      loginError.classList.remove("hidden");
-      console.error(err);
-    });
-  });
-
-  document.getElementById("login-password").addEventListener("keydown", e => {
-    if (e.key === "Enter") document.getElementById("login-btn").click();
-  });
-
-  logoutBtn.addEventListener("click", () => auth.signOut());
-  </script>
+});
+document.getElementById("login-password").addEventListener("keydown", e => {
+  if (e.key === "Enter") document.getElementById("login-btn").click();
+});
+logoutBtn.addEventListener("click", () => auth.signOut());
+</script>
 </body>
 </html>

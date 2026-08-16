@@ -2,1105 +2,378 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-
-<meta property="og:title" content="Habib Création — Graphisme, Design & Création Web">
-<meta name="theme-color" content="#1C36CB">
-<meta property="og:url" content="https://habib-creation-service.web.app/Client.html">
-<meta property="og:description" content="Découvrez Habib Création, votre partenaire créatif pour le graphisme, l’identité visuelle, la communication visuelle et la création de sites web professionnels.">
-<meta name="description" content="### Habib Création — Studio Graphisme & Web
-
-**Habib Création** est un studio créatif spécialisé dans le **graphisme, la communication visuelle et la création de solutions web modernes**.
-
-Le site permet aux clients de découvrir les différents services proposés et de prendre facilement contact pour discuter de leurs besoins. Que ce soit pour la création d’une **identité visuelle, d’affiches, de supports publicitaires, de contenus pour les réseaux sociaux ou de projets web**, Habib Création accompagne les particuliers, entrepreneurs, entreprises et organisations dans la réalisation de leurs projets.
-
-L’objectif est de proposer des créations **professionnelles, modernes et adaptées à chaque besoin**, afin d’aider les clients à mieux présenter leur activité et à développer leur image.
-
-**Habib Création — Donnez vie à vos idées.**
-">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" href="/favicon/icon-192.png" type="image/ico">
-<title>Studio — Graphisme &amp; Web</title>
+<title>Habib Création — Studio créatif & digital à Niamey</title>
+<meta name="description" content="Habib Création transforme les idées des entreprises en identités visuelles, expériences web et solutions digitales professionnelles. Graphisme, branding, sites web, e-commerce à Niamey.">
+<link rel="canonical" href="https://habib-creation-service.web.app/">
 
-<!-- PWA : manifeste intégré directement (pas de fichier externe) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Habib Création — Studio créatif & digital">
+<meta property="og:description" content="Votre image mérite mieux qu'un simple visuel. Découvrez le studio Habib Création : graphisme, identité visuelle, sites web et solutions digitales.">
+<meta property="og:url" content="https://habib-creation-service.web.app/">
+<meta property="og:image" content="https://placehold.co/1200x630/14131c/ffffff?text=Habib+Cr%C3%A9ation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Habib Création — Studio créatif & digital">
+<meta name="twitter:description" content="Graphisme, identité visuelle, sites web et solutions digitales pour les entreprises.">
+<meta name="twitter:image" content="https://placehold.co/1200x630/14131c/ffffff?text=Habib+Cr%C3%A9ation">
+
+<meta name="theme-color" content="#14131c">
 <link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Habib Création">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 
-<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;0,900;1,500;1,600&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-<style>
-  
-:root {
-  --bg-a: #efeafb;
-  --bg-b: #e2dcf8;
-  --surface: #ffffff;
-  --ink: #221c35;
-  --ink-soft: #726c8c;
-  --grad-1: #8b6cf2;
-  --grad-2: #7c3aed;
-  --grad-3:   #1C36CB;
-  --chip: #f2edfd;
-  --ring: #e7e0fb;
-}
-* { box-sizing: border-box; }
-body {
-  min-height: 100vh;
-  background: white;
-  color: var(--ink);
-  font-family: "Inter", sans-serif;
-}
-.font-display { font-family: "Poppins", sans-serif; }
-
-.hero-card {
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  border-radius: 32px;
-  box-shadow: 0 20px 45px -18px rgba(124, 58, 237, 0.55);
-  position: relative;
-  overflow: hidden;
-}
-.hero-card::before {
-  content: "";
-  position: absolute;
-  width: 260px; height: 260px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.14);
-  top: -90px; right: -70px;
-}
-.hero-card::after {
-  content: "";
-  position: absolute;
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.10);
-  bottom: -60px; left: -40px;
-}
-
-.avatar-ring {
-  border-radius: 9999px;
-  padding: 4px;
-  background: rgba(255,255,255,0.55);
-}
-
-.pill {
-  border-radius: 9999px;
-  background: rgba(255,255,255,0.18);
-  color: #fff;
-  backdrop-filter: blur(6px);
-  transition: transform .15s ease, background .15s ease;
-  font-size: 14px;
-}
-.pill:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
-
-.service-card {
-  background: var(--surface);
-  border-radius: 28px;
-  box-shadow: 0 14px 30px -18px rgba(80, 60, 140, 0.28);
-  transition: transform .18s ease, box-shadow .18s ease;
-  text-align: left;
-}
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 38px -16px rgba(80, 60, 140, 0.38);
-}
-
-.icon-badge {
-  width: 56px; height: 56px;
-  border-radius: 18px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  color: #fff;
-  box-shadow: 0 10px 18px -8px rgba(124, 58, 237, 0.55);
-  font-size: 24px;
-}
-
-.cta-chip {
-  border-radius: 9999px;
-  background: var(--chip);
-  color: var(--grad-2);
-  font-weight: 600;
-  transition: background .15s ease, color .15s ease;
-}
-.service-card:hover .cta-chip {
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  color: #fff;
-}
-
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(34, 28, 53, 0.55);
-  backdrop-filter: blur(3px);
-  display: none;
-  align-items: center; justify-content: center;
-  z-index: 50;
-  padding: 16px;
-}
-.modal-overlay.open { display: flex; }
-.modal-card {
-  background: var(--surface);
-  border-radius: 28px;
-  box-shadow: 0 25px 60px -20px rgba(34, 28, 53, 0.45);
-}
-.modal-close {
-  width: 36px; height: 36px;
-  border-radius: 9999px;
-  background: var(--chip);
-  display: flex; align-items: center; justify-content: center;
-}
-
-.channel-row {
-  border-radius: 18px;
-  background: var(--chip);
-  transition: background .15s ease, transform .15s ease;
-}
-.channel-row:hover { background: var(--ring); transform: translateX(2px); }
-.channel-icon {
-  width: 38px; height: 38px;
-  border-radius: 9999px;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  color: #fff;
-  font-size: 17px;
-}
-
-/* ---- GALERIE AUTO-SCROLL ---- */
-.gallery-wrap {
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-}
-.gallery-track {
-  display: flex;
-  width: max-content;
-  gap: 18px;
-  animation: gallery-scroll 32s linear infinite;
-}
-.gallery-wrap:hover .gallery-track { animation-play-state: paused; }
-@keyframes gallery-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-@keyframes gallery-scroll-reverse {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
-}
-.gallery-track-reverse { animation-name: gallery-scroll-reverse; }
-.gallery-item {
-  flex: 0 0 auto;
-  width: 240px;
-  height: 170px;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 14px 30px -18px rgba(80, 60, 140, 0.35);
-  background: var(--surface);
-}
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s ease; }
-.gallery-item:hover img { transform: scale(1.06); }
-@media (max-width: 640px) {
-  .gallery-item { width: 170px; height: 130px; }
-}
-
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
-
-/* ---- BOUTON PARTAGE ---- */
-.share-btn {
-  width: 38px; height: 38px;
-  border-radius: 9999px;
-  background: var(--chip);
-  color: var(--grad-2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  transition: background .15s ease, transform .15s ease;
-}
-.share-btn:hover { background: var(--ring); transform: translateY(-2px); }
-.share-btn.copied { background: #16a34a; color: #fff; }
-
-/* ---- BOUTON "VOIR LES PROMOS" (header) ---- */
-.see-promos-btn {
-  display: none;
-  align-items: center;
-  gap: 6px;
-  border-radius: 9999px;
-  padding: 8px 14px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  color: #fff;
-  font-weight: 700;
-  font-size: 12.5px;
-  box-shadow: 0 10px 20px -10px rgba(124, 58, 237, 0.55);
-  transition: transform .15s ease;
-  white-space: nowrap;
-}
-.see-promos-btn.show { display: inline-flex; }
-.see-promos-btn:hover { transform: translateY(-2px); }
-@media (max-width: 420px) {
-  .see-promos-btn span { display: none; }
-  .see-promos-btn { padding: 8px 10px; font-size: 15px; }
-}
-
-/* ---- TOAST DE RETOUR (partage / copie) ---- */
-.client-toast {
-  position: fixed;
-  left: 50%; bottom: 24px;
-  transform: translate(-50%, 20px);
-  background: var(--ink); color: #fff;
-  border-radius: 14px;
-  padding: 10px 18px;
-  font-size: 13px;
-  font-weight: 500;
-  max-width: calc(100vw - 32px);
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  z-index: 90;
-}
-.client-toast.show { opacity: 1; transform: translate(-50%, 0); }
-
-/* ---- BANNIÈRE D'INSTALLATION (PWA) — en haut du site ---- */
-body { transition: padding-top .3s ease; }
-.install-banner {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 80;
-  background: var(--surface);
-  border-bottom: 1.5px solid var(--ring);
-  box-shadow: 0 16px 34px -20px rgba(34, 28, 53, 0.4);
-  transform: translateY(-110%);
-  transition: transform .35s ease;
-  display: none;
-}
-.install-banner.show { display: block; transform: translateY(0); }
-.install-banner-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.install-banner .install-icon {
-  width: 42px; height: 42px; flex-shrink: 0;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 19px;
-}
-.install-banner .install-copy { flex: 1; min-width: 0; }
-.install-banner .install-copy p:last-child { margin-top: 2px; }
-.install-banner .install-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.install-banner .install-action-btn {
-  border-radius: 9999px;
-  padding: 9px 18px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  color: #fff;
-  font-weight: 700;
-  font-size: 13px;
-  white-space: nowrap;
-  box-shadow: 0 10px 20px -10px rgba(124, 58, 237, 0.55);
-  transition: transform .15s ease;
-}
-.install-banner .install-action-btn:hover { transform: translateY(-2px); }
-.install-banner .install-later-btn {
-  border-radius: 9999px;
-  padding: 9px 14px;
-  background: var(--chip);
-  color: var(--ink-soft);
-  font-weight: 600;
-  font-size: 13px;
-  white-space: nowrap;
-  transition: background .15s ease;
-}
-.install-banner .install-later-btn:hover { background: var(--ring); }
-
-/* ---- CADRE PROMOTION FLOTTANT ---- */
-.promo-float {
-  position: fixed;
-  right: 16px; bottom: 16px;
-  width: 300px;
-  max-width: calc(100vw - 32px);
-  background: var(--surface);
-  border-radius: 24px;
-  box-shadow: 0 22px 50px -18px rgba(34, 28, 53, 0.5);
-  border: 1.5px solid var(--ring);
-  overflow: hidden;
-  z-index: 60;
-  display: none;
-  transform: translateY(20px) scale(.97);
-  opacity: 0;
-  transition: transform .3s ease, opacity .3s ease;
-}
-.promo-float.show { display: block; }
-.promo-float.enter { transform: translateY(0) scale(1); opacity: 1; }
-.promo-float .promo-img {
-  width: 100%; height: 140px;
-  object-fit: cover; display: block;
-  background: var(--chip);
-}
-.promo-float .promo-badge {
-  position: absolute; top: 10px; left: 10px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  color: #fff; font-weight: 700; font-size: 11px;
-  padding: 4px 10px; border-radius: 9999px;
-  box-shadow: 0 6px 14px -6px rgba(124,58,237,0.6);
-}
-.promo-float .promo-close {
-  position: absolute; top: 10px; right: 10px;
-  width: 26px; height: 26px;
-  border-radius: 9999px;
-  background: rgba(34,28,53,0.55);
-  color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
-  backdrop-filter: blur(3px);
-}
-.promo-float .promo-media { position: relative; }
-.promo-float .promo-body { padding: 14px 16px 16px; }
-.promo-float .price-old {
-  text-decoration: line-through;
-  color: var(--ink-soft);
-  font-size: 13px;
-}
-.promo-float .price-new {
-  color: var(--grad-2);
-  font-weight: 800;
-  font-size: 19px;
-}
-.promo-float .promo-cta {
-  display: block;
-  width: 100%;
-  text-align: center;
-  border-radius: 9999px;
-  padding: 10px 0;
-  margin-top: 10px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-  box-shadow: 0 12px 24px -12px rgba(124, 58, 237, 0.55);
-  transition: transform .15s ease;
-}
-.promo-float .promo-cta:hover { transform: translateY(-2px); }
-
-/* animation de flottement (l'annonce "respire" en continu) */
-@keyframes promo-float-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-9px); }
-}
-.promo-float-bob { animation: promo-float-bob 3.6s ease-in-out infinite; }
-.promo-float:hover .promo-float-bob { animation-play-state: paused; }
-
-.promo-float-link {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 8px 0 2px;
-  color: var(--grad-2);
-}
-
-/* ---- RESPONSIVE MOBILE : bannière + annonce flottante ---- */
-@media (max-width: 640px) {
-  .promo-float { right: 12px; bottom: 12px; width: 260px; }
-  .install-banner-inner { padding: 10px 14px; gap: 10px; }
-  .install-banner .install-icon { width: 36px; height: 36px; font-size: 16px; border-radius: 12px; }
-  .install-banner .install-action-btn, .install-banner .install-later-btn { padding: 8px 12px; font-size: 12px; }
-}
-@media (max-width: 420px) {
-  .promo-float { left: 12px; right: 12px; width: auto; bottom: 12px; }
-  .install-banner .install-copy p:last-child { display: none; }
-  .install-banner .install-icon { display: none; }
-}
-
-/* ---- SECTION "TOUTES LES PROMOTIONS" ---- */
-.promo-card {
-  background: var(--surface);
-  border-radius: 24px;
-  box-shadow: 0 14px 30px -18px rgba(80, 60, 140, 0.28);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.promo-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 38px -16px rgba(80, 60, 140, 0.38);
-}
-.promo-card .promo-card-media { position: relative; }
-.promo-card .promo-card-img {
-  width: 100%; height: 160px;
-  object-fit: cover; display: block;
-  background: var(--chip);
-}
-.promo-card .promo-card-badge {
-  position: absolute; top: 10px; left: 10px;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-3));
-  color: #fff; font-weight: 700; font-size: 11px;
-  padding: 4px 10px; border-radius: 9999px;
-  box-shadow: 0 6px 14px -6px rgba(124,58,237,0.6);
-}
-.promo-card .promo-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
-.promo-card .promo-card-desc { font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; }
-.promo-card .promo-card-prices { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.promo-card .promo-card-old { text-decoration: line-through; color: var(--ink-soft); font-size: 13px; }
-.promo-card .promo-card-new { color: var(--grad-2); font-weight: 800; font-size: 18px; }
-.promo-card .promo-card-cta {
-  margin-top: auto;
-  display: block;
-  text-align: center;
-  border-radius: 9999px;
-  padding: 9px 0;
-  background: linear-gradient(135deg, var(--grad-1), var(--grad-2) 55%, var(--grad-3));
-  color: #fff;
-  font-weight: 700;
-  font-size: 13px;
-  box-shadow: 0 12px 24px -12px rgba(124, 58, 237, 0.55);
-  transition: transform .15s ease;
-}
-.promo-card .promo-card-cta:hover { transform: translateY(-2px); }
-</style>
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- HEADER -->
-  <header class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-full" style="background:linear-gradient(135deg,var(--grad-1),var(--grad-3))"></div>
-      <span class="font-display font-bold text-sm tracking-tight" id="brand-name">Studio</span>
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="brand"><span class="brand-mark" aria-hidden="true"></span><span data-brand-name>Habib Création</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#accueil" class="active">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="projets.html">Projets</a>
+      <a href="packs.html">Packs</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="temoignages.html">Témoignages</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="devis.html" class="btn btn-accent btn-sm">Demander un devis</a>
+      <button class="nav-burger" aria-label="Ouvrir le menu"><i class="bi bi-list"></i></button>
     </div>
-    <div class="flex items-center gap-2">
-      <button id="see-promos-btn" class="see-promos-btn" aria-label="Voir les promotions" title="Voir les promotions">
-        <i class="bi bi-tags-fill"></i><span>Voir les promos</span>
-      </button>
-      <button id="share-btn" class="share-btn" aria-label="Partager le site" title="Partager le site">
-        <i class="bi bi-share"></i>
-      </button>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <!-- GALERIE (HAUT) -->
-  <section id="gallery-section-top" class="max-w-5xl mx-auto px-6 pb-10 hidden">
-    <div class="gallery-wrap">
-      <div id="gallery-track-top" class="gallery-track gallery-track-reverse"></div>
-    </div>
-  </section>
+<!-- MENU MOBILE -->
+<div class="mobile-menu" aria-label="Menu mobile">
+  <button class="nav-burger mobile-menu-close" style="position:absolute; top:18px; right:22px;" aria-label="Fermer le menu"><i class="bi bi-x-lg"></i></button>
+  <div class="mobile-menu-inner">
+    <a href="#accueil">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="projets.html">Projets</a>
+    <a href="packs.html">Packs</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="temoignages.html">Témoignages</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="devis.html" class="btn btn-accent btn-block mobile-cta">Demander un devis</a>
+  </div>
+</div>
 
-  <!-- HERO / PROFIL -->
-  <section class="max-w-5xl mx-auto px-6 pb-14">
-    <div class="hero-card px-7 py-8 sm:px-10 sm:py-10">
-      <div class="relative flex flex-col sm:flex-row sm:items-center gap-6">
-        <div class="avatar-ring w-24 h-24 sm:w-28 sm:h-28 shrink-0">
-          <img id="profile-photo" src="https://placehold.co/300x300/8b6cf2/ffffff?text=Photo" alt="Photo de profil" class="w-full h-full object-cover rounded-full" />
-        </div>
-        <div class="relative z-10">
-          <p class="text-white/70 text-sm mb-1">Bonjour, je suis</p>
-          <h1 id="profile-name" class="font-display font-extrabold text-3xl sm:text-4xl text-white leading-tight mb-3"></h1>
-          <p id="profile-bio" class="text-white/85 max-w-xl leading-relaxed">Chargement de la présentation…</p>
-        </div>
+<!-- HERO -->
+<section id="accueil" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Studio créatif &amp; digital — Niamey</span>
+      <h1>Votre image mérite mieux qu'<em>un simple visuel.</em></h1>
+      <p class="hero-sub">Habib Création transforme les idées des entreprises en identités visuelles, expériences web et solutions digitales professionnelles.</p>
+      <div class="hero-ctas">
+        <a href="projets.html" class="btn btn-primary">Voir mes projets</a>
+        <a href="#" data-wa-message="Bonjour Habib Création, je souhaite parler de mon projet." class="btn btn-ghost">Parler de mon projet</a>
       </div>
-      <div id="social-row" class="relative z-10 flex flex-wrap gap-2.5 mt-7"></div>
-    </div>
-  </section>
-
-  <!-- TOUTES LES PROMOTIONS -->
-  <section id="promotions-section" class="max-w-5xl mx-auto px-6 pb-24 hidden">
-    <div class="flex items-end justify-between mb-6">
-      <h2 class="font-display font-bold text-2xl">Promotions en cours</h2>
-      <p class="text-sm hidden sm:block" style="color:var(--ink-soft)">Offres à ne pas manquer</p>
-    </div>
-    <div id="promotions-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="max-w-5xl mx-auto px-6 pb-24">
-    <div class="flex items-end justify-between mb-6">
-      <h2 class="font-display font-bold text-2xl">Mes services</h2>
-      <p class="text-sm hidden sm:block" style="color:var(--ink-soft)">Touchez un service pour discuter</p>
-    </div>
-    <div id="services-grid" class="grid sm:grid-cols-2 gap-5"></div>
-  </section>
-
-  <!-- GALERIE -->
-  <section id="gallery-section" class="max-w-5xl mx-auto px-6 pb-24 hidden">
-    <div class="flex items-end justify-between mb-6 px-1">
-      <h2 class="font-display font-bold text-2xl">Galerie</h2>
-      <p class="text-sm hidden sm:block" style="color:var(--ink-soft)">Un aperçu de mes réalisations</p>
-    </div>
-    <div class="gallery-wrap">
-      <div id="gallery-track" class="gallery-track"></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="max-w-5xl mx-auto px-6 py-10 flex flex-col items-center justify-center gap-3">
-    <div class="flex items-center gap-2">
-      <div class="w-5 h-5 rounded-full" style="background:linear-gradient(135deg,var(--grad-1),var(--grad-3))"></div>
-      <p class="text-sm" style="color:var(--ink-soft)">Contactez-moi via un réseau ci-dessus</p>
-    </div>
-    <a href="/privacy-policy.html" class="text-xs underline underline-offset-2" style="color:var(--ink-soft)">Politique de confidentialité</a>
-  </footer>
-
-  <!-- BANNIÈRE D'INSTALLATION (PWA) — en haut du site -->
-  <div id="install-banner" class="install-banner" role="dialog" aria-label="Installer l'application">
-    <div class="install-banner-inner">
-      <div class="install-icon"><i class="bi bi-laptop"></i></div>
-      <div class="install-copy">
-        <p class="font-display font-bold text-sm" id="install-title">💻 Installer l'application</p>
-        <p class="text-xs" id="install-text" style="color:var(--ink-soft)">Installez ce site sur votre appareil pour y accéder rapidement comme une application.</p>
+      <div class="hero-trust">
+        <span><strong>Graphisme</strong> · <strong>Web</strong> · <strong>Solutions digitales</strong></span>
       </div>
-      <div class="install-actions">
-        <button id="install-action" class="install-action-btn">Installer</button>
-        <button id="install-later" class="install-later-btn">Plus tard</button>
+    </div>
+    <div class="hero-visual" data-reveal>
+      <div class="hero-card hc-1"><img id="hero-image-1" src="https://placehold.co/700x760/ece9ff/2a1f99?text=Identit%C3%A9+visuelle" alt="Exemple d'identité visuelle créée par Habib Création" loading="lazy"></div>
+      <div class="hero-card hc-2"><img id="hero-image-2" src="https://placehold.co/600x420/14131c/ffffff?text=Interface+web" alt="Aperçu d'une interface web créée par Habib Création" loading="lazy"></div>
+      <div class="hero-card hc-3">
+        <span class="hc-label">Accompagnement</span>
+        <span class="hc-value">Idée → Marque → Site en ligne</span>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- CADRE D'ANNONCE FLOTTANT — PROMOTION -->
-  <div id="promo-float" class="promo-float">
-    <div id="promo-float-inner" class="promo-float-bob">
-      <div class="promo-media">
-        <img id="promo-image" class="promo-img" src="" alt="Service en promotion" />
-        <span id="promo-badge" class="promo-badge">Promo</span>
-        <button id="promo-close" class="promo-close" aria-label="Fermer">✕</button>
+<!-- RUBAN DÉFILANT -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Graphisme</span><span>Identité visuelle</span><span>Création web</span><span>E-commerce</span><span>Branding</span><span>Packaging</span><span>Réseaux sociaux</span><span>QR Code</span>
+    <span>Graphisme</span><span>Identité visuelle</span><span>Création web</span><span>E-commerce</span><span>Branding</span><span>Packaging</span><span>Réseaux sociaux</span><span>QR Code</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Ce que je fais</span>
+        <h2>Tout ce qu'il faut pour développer votre présence.</h2>
       </div>
-      <div class="promo-body">
-        <h4 id="promo-title" class="font-display font-bold text-base mb-1"></h4>
-        <p id="promo-desc" class="text-xs mb-2" style="color:var(--ink-soft)"></p>
-        <div class="flex items-center gap-2">
-          <span id="promo-price-old" class="price-old"></span>
-          <span id="promo-price-new" class="price-new"></span>
+      <p>De l'identité de marque jusqu'à la présence digitale complète.</p>
+    </div>
+    <div id="services-grid" class="services-grid">
+      <!-- Rempli dynamiquement par assets/js/firebase-data.js (piloté depuis l'admin) -->
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section class="section" style="background:var(--paper-soft)">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Réalisations</span>
+        <h2>Un aperçu de mes projets.</h2>
+      </div>
+      <p>Filtrez par catégorie pour explorer le travail réalisé.</p>
+    </div>
+    <div class="filter-row" data-filter-group data-filter-target="#home-projects .project-card">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+      <button class="filter-btn" data-filter="branding">Branding</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="digital">Digital</button>
+    </div>
+    <div id="home-projects" class="projects-grid">
+      <!-- Rempli dynamiquement par assets/js/firebase-data.js (piloté depuis l'admin) -->
+    </div>
+    <div style="text-align:center; margin-top:36px;" data-reveal>
+      <a href="projets.html" class="btn btn-ghost">Voir tous les projets</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÉTUDES DE CAS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Études de cas</span>
+        <h2>Des idées transformées en projets.</h2>
+      </div>
+      <p>Le processus complet, du besoin au résultat.</p>
+    </div>
+
+    <div class="case-card" data-reveal>
+      <div class="case-media"><img src="https://placehold.co/500x375/ece9ff/2a1f99?text=Boutique+Textile" alt="Étude de cas boutique de vêtements" loading="lazy"></div>
+      <div>
+        <span class="project-concept-badge" style="position:static; display:inline-block; margin-bottom:12px;">Projet concept</span>
+        <h3 style="font-size:22px; margin-bottom:10px;">Boutique de vêtements</h3>
+        <p style="color:var(--ink-soft); font-size:14.5px; margin:0;">Une boutique fictive sans identité claire, avec des visuels incohérents d'un support à l'autre.</p>
+        <div class="case-steps">
+          <div class="case-step"><span class="k">Problème</span><p>Aucune identité de marque reconnaissable.</p></div>
+          <div class="case-step"><span class="k">Solution</span><p>Charte graphique complète et cohérente.</p></div>
+          <div class="case-step"><span class="k">Création</span><p>Logo, palette, supports imprimés et digitaux.</p></div>
+          <div class="case-step"><span class="k">Résultat</span><p>Une image professionnelle et unifiée.</p></div>
         </div>
-        <button id="promo-cta" class="promo-cta">Profiter de l'offre</button>
-        <a id="promo-see-all" href="#promotions-section" class="promo-float-link hidden">Voir toutes les promotions →</a>
+      </div>
+    </div>
+
+    <div class="case-card" data-reveal>
+      <div class="case-media"><img src="https://placehold.co/500x375/14131c/ffffff?text=Restaurant" alt="Étude de cas restaurant" loading="lazy"></div>
+      <div>
+        <span class="project-concept-badge" style="position:static; display:inline-block; margin-bottom:12px;">Projet concept</span>
+        <h3 style="font-size:22px; margin-bottom:10px;">Restaurant</h3>
+        <p style="color:var(--ink-soft); font-size:14.5px; margin:0;">Un restaurant fictif sans présence en ligne, difficile à trouver pour les nouveaux clients.</p>
+        <div class="case-steps">
+          <div class="case-step"><span class="k">Problème</span><p>Absence totale de présence web.</p></div>
+          <div class="case-step"><span class="k">Solution</span><p>Site vitrine avec menu et réservation.</p></div>
+          <div class="case-step"><span class="k">Création</span><p>Design responsive, photos, menu digital.</p></div>
+          <div class="case-step"><span class="k">Résultat</span><p>Visibilité en ligne et prise de réservation facilitée.</p></div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- MODAL CHOIX DE CANAL -->
-  <div id="modal-overlay" class="modal-overlay">
-    <div class="modal-card max-w-sm w-full p-6">
-      <div class="flex items-start justify-between mb-5">
-        <div>
-          <p class="text-sm mb-1" style="color:var(--ink-soft)">Discuter de</p>
-          <h3 id="modal-service-title" class="font-display font-bold text-xl">Service</h3>
-        </div>
-        <button id="modal-close" class="modal-close" aria-label="Fermer">✕</button>
+<!-- AVANT / APRÈS -->
+<section class="section" style="background:var(--paper-soft)">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Transformation</span>
+        <h2>Avant / après.</h2>
       </div>
-      <p class="text-sm mb-4" style="color:var(--ink-soft)">Choisissez l'application pour démarrer la discussion :</p>
-      <div id="modal-channels" class="flex flex-col gap-2"></div>
+      <p>Faites glisser le curseur pour comparer.</p>
+    </div>
+    <div class="compare-grid">
+      <div data-reveal>
+        <div class="compare-wrap">
+          <img id="compare1-before" src="https://placehold.co/600x450/cbd5e1/475569?text=AVANT" alt="Identité visuelle avant refonte">
+          <img id="compare1-after" class="compare-after" src="https://placehold.co/600x450/ece9ff/2a1f99?text=APR%C3%88S" alt="Identité visuelle après refonte">
+          <span class="compare-label before">Avant</span>
+          <span class="compare-label after">Après</span>
+          <div class="compare-divider"></div>
+          <div class="compare-handle"><i class="bi bi-arrows-expand"></i></div>
+          <input type="range" min="0" max="100" value="50" class="compare-slider" aria-label="Comparer avant et après l'identité visuelle">
+        </div>
+        <p id="compare1-caption" class="compare-caption">Identité visuelle</p>
+      </div>
+      <div data-reveal>
+        <div class="compare-wrap">
+          <img id="compare2-before" src="https://placehold.co/600x450/cbd5e1/475569?text=AVANT" alt="Page web avant refonte">
+          <img id="compare2-after" class="compare-after" src="https://placehold.co/600x450/14131c/ffffff?text=APR%C3%88S" alt="Page web après refonte">
+          <span class="compare-label before">Avant</span>
+          <span class="compare-label after">Après</span>
+          <div class="compare-divider"></div>
+          <div class="compare-handle"><i class="bi bi-arrows-expand"></i></div>
+          <input type="range" min="0" max="100" value="50" class="compare-slider" aria-label="Comparer avant et après la page web">
+        </div>
+        <p id="compare2-caption" class="compare-caption">Page web</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- TOAST DE RETOUR (partage / copie du lien) -->
-  <div id="client-toast" class="client-toast"></div>
+<!-- PACKS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Offres</span>
+        <h2>Des formules claires pour chaque étape.</h2>
+      </div>
+      <p>Tarifs personnalisés selon votre projet.</p>
+    </div>
+    <div id="packs-grid" class="packs-grid">
+      <!-- Rempli dynamiquement par assets/js/firebase-data.js (piloté depuis l'admin) -->
+    </div>
+    <p style="text-align:center; font-size:13px; color:var(--ink-faint); margin-top:24px;" data-reveal>Tarifs communiqués sur devis, selon la portée exacte du projet.</p>
+  </div>
+</section>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script>
-  // ============================================================
-  // CONFIGURATION FIREBASE — remplace ces valeurs par les tiennes
-  // (Console Firebase → Paramètres du projet → Tes applications)
-  // ============================================================
-  const firebaseConfig = {
-  apiKey: "AIzaSyBBmz7Tg7ZhWde3f0WEYFDkDQE6h0B9Dlw",
-  authDomain: "habib-creation-service.firebaseapp.com",
-  projectId: "habib-creation-service",
-  storageBucket: "habib-creation-service.firebasestorage.app",
-  messagingSenderId: "676176613725",
-  appId: "1:676176613725:web:22a617df879f846a5798b4"
-};
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+<!-- PROCESSUS -->
+<section class="section" style="background:var(--paper-soft)">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Méthode</span>
+        <h2>Comment se déroule un projet.</h2>
+      </div>
+    </div>
+    <div class="process-row">
+      <div class="process-step" data-reveal><span class="process-num">01</span><h4>Discussion</h4><p>On échange sur votre besoin et votre vision.</p></div>
+      <div class="process-step" data-reveal><span class="process-num">02</span><h4>Analyse</h4><p>J'étudie votre activité et votre positionnement.</p></div>
+      <div class="process-step" data-reveal><span class="process-num">03</span><h4>Proposition</h4><p>Une direction créative vous est présentée.</p></div>
+      <div class="process-step" data-reveal><span class="process-num">04</span><h4>Création</h4><p>Le projet prend forme, étape par étape.</p></div>
+      <div class="process-step" data-reveal><span class="process-num">05</span><h4>Validation</h4><p>Vous validez avant la version finale.</p></div>
+      <div class="process-step" data-reveal><span class="process-num">06</span><h4>Livraison</h4><p>Vous recevez tous les fichiers finalisés.</p></div>
+    </div>
+  </div>
+</section>
 
-  // ============================================================
-  // DONNÉES PAR DÉFAUT (tant que Firestore est vide/non configuré)
-  // ============================================================
-  const DEFAULT_PROFILE = {
-    name: "Votre Nom",
-    bio: "Designer graphique freelance à Niamey. Création graphique, impression, réseaux sociaux et sites web sur mesure.",
-    photoUrl: "https://placehold.co/300x300/8b6cf2/ffffff?text=Photo"
-  };
-  const DEFAULT_SOCIALS = { instagram: "", telegram: "", whatsapp: "", facebook: "", phone: "" };
-  const DEFAULT_SITE = { link: window.location.origin + "/Client.html" };
-  const DEFAULT_PROMOTIONS = [];
-  const DEFAULT_SERVICES = [
-    { id: "s1", order: 1, active: true, icon: "palette", title: "Création graphique", description: "Logos, chartes graphiques, identité visuelle complète." },
-    { id: "s2", order: 2, active: true, icon: "printer", title: "Impression & supports publicitaires", description: "Flyers, affiches, banderoles, cartes de visite et supports imprimés." },
-    { id: "s3", order: 3, active: true, icon: "share", title: "Design pour réseaux sociaux", description: "Visuels, templates et contenus pensés pour Instagram et Facebook." },
-    { id: "s4", order: 4, active: true, icon: "code", title: "Création de sites web", description: "Sites vitrines et pages web modernes, rapides et responsives." }
-  ];
-
-  // ---- icônes des réseaux (génériques, pas de logos de marque) ----
-  const CHANNEL_ICONS = {
-    instagram: "bi-instagram",
-    telegram: "bi-telegram",
-    whatsapp: "bi-whatsapp",
-    facebook: "bi-facebook",
-    phone: "bi-telephone-fill"
-  };
-  const CHANNEL_LABELS = { instagram: "Instagram", telegram: "Telegram", whatsapp: "WhatsApp", facebook: "Facebook", phone: "Appel" };
-
-  // ---- icônes des services (choisies depuis la page admin) ----
-  const SERVICE_ICONS = {
-    palette: "bi-palette2",
-    printer: "bi-printer-fill",
-    share: "bi-share-fill",
-    code: "bi-code-slash",
-    camera: "bi-camera-fill",
-    megaphone: "bi-megaphone-fill",
-    chat: "bi-chat-dots-fill",
-    star: "bi-star-fill"
-  };
-
-  let currentSocials = { ...DEFAULT_SOCIALS };
-
-  let currentShareLink = DEFAULT_SITE.link;
-
-  async function loadSite() {
-    let profile = DEFAULT_PROFILE, socials = DEFAULT_SOCIALS, services = DEFAULT_SERVICES, gallery = [];
-    let site = DEFAULT_SITE, promotions = DEFAULT_PROMOTIONS;
-    try {
-      const profileSnap = await db.collection("config").doc("profile").get();
-      if (profileSnap.exists) profile = { ...DEFAULT_PROFILE, ...profileSnap.data() };
-      const socialsSnap = await db.collection("config").doc("socials").get();
-      if (socialsSnap.exists) socials = { ...DEFAULT_SOCIALS, ...socialsSnap.data() };
-      const servicesSnap = await db.collection("services").orderBy("order").get();
-      if (!servicesSnap.empty) {
-        services = servicesSnap.docs.map(d => ({ id: d.id, ...d.data() })).filter(s => s.active !== false);
-      }
-      const gallerySnap = await db.collection("gallery").orderBy("order").get();
-      if (!gallerySnap.empty) {
-        gallery = gallerySnap.docs.map(d => ({ id: d.id, ...d.data() }));
-      }
-      const siteSnap = await db.collection("config").doc("site").get();
-      if (siteSnap.exists) site = { ...DEFAULT_SITE, ...siteSnap.data() };
-      const promotionsSnap = await db.collection("promotions").orderBy("order").get();
-      if (!promotionsSnap.empty) {
-        promotions = promotionsSnap.docs.map(d => ({ id: d.id, ...d.data() })).filter(p => p.active !== false);
-      }
-    } catch (err) {
-      console.warn("Firebase non configuré ou hors ligne — affichage des données par défaut.", err);
-    }
-    currentSocials = socials;
-    renderProfile(profile);
-    renderSocialRow(socials);
-    renderServices(services);
-    renderGallery(gallery);
-    currentShareLink = (site.link && site.link.trim()) || DEFAULT_SITE.link;
-    renderPromoFloat(promotions);
-    renderPromotionsGrid(promotions);
-  }
-
-  function renderProfile(profile) {
-    document.getElementById("profile-photo").src = profile.photoUrl || DEFAULT_PROFILE.photoUrl;
-    document.getElementById("profile-name").textContent = profile.name || DEFAULT_PROFILE.name;
-    document.getElementById("profile-bio").textContent = profile.bio || DEFAULT_PROFILE.bio;
-    document.getElementById("brand-name").textContent = profile.name || DEFAULT_PROFILE.name;
-  }
-
-  function renderSocialRow(socials) {
-    const row = document.getElementById("social-row");
-    row.innerHTML = "";
-    Object.keys(CHANNEL_LABELS).forEach(key => {
-      const value = socials[key];
-      if (!value) return;
-      const a = document.createElement("a");
-      a.href = buildChannelLink(key, value, "");
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.className = "pill px-4 py-2 text-xs flex items-center gap-2";
-      a.innerHTML = `<i class="bi ${CHANNEL_ICONS[key]}"></i><span>${CHANNEL_LABELS[key]}</span>`;
-      row.appendChild(a);
-    });
-    if (!row.children.length) {
-      row.innerHTML = `<p class="text-white/70 text-xs"></p>`;
-    }
-  }
-
-  function renderServices(services) {
-    const grid = document.getElementById("services-grid");
-    grid.innerHTML = "";
-    services.sort((a, b) => (a.order || 0) - (b.order || 0)).forEach(service => {
-      const card = document.createElement("button");
-      card.className = "service-card p-6";
-      const iconClass = SERVICE_ICONS[service.icon] || SERVICE_ICONS.star;
-      card.innerHTML = `
-        <div class="icon-badge mb-4"><i class="bi ${iconClass}"></i></div>
-        <h3 class="font-display font-bold text-lg mb-1.5">${escapeHtml(service.title)}</h3>
-        <p class="text-sm mb-4" style="color:var(--ink-soft)">${escapeHtml(service.description || "")}</p>
-        <span class="cta-chip inline-block text-xs px-3.5 py-1.5">Discuter →</span>
-      `;
-      card.addEventListener("click", () => openModal(service.title));
-      grid.appendChild(card);
-    });
-  }
-
-  function renderGallery(gallery) {
-    const sectionTop = document.getElementById("gallery-section-top");
-    const trackTop = document.getElementById("gallery-track-top");
-    const sectionBottom = document.getElementById("gallery-section");
-    const trackBottom = document.getElementById("gallery-track");
-    trackTop.innerHTML = "";
-    trackBottom.innerHTML = "";
-
-    if (!gallery || !gallery.length) {
-      sectionTop.classList.add("hidden");
-      sectionBottom.classList.add("hidden");
-      return;
-    }
-
-    const sorted = [...gallery].sort((a, b) => (a.order || 0) - (b.order || 0));
-    const loopItems = [...sorted, ...sorted];
-    const speedPerItem = 3.2; // secondes par image
-    const duration = `${Math.max(sorted.length * speedPerItem, 12)}s`;
-
-    fillGalleryTrack(trackTop, loopItems);
-    trackTop.style.animationDuration = duration;
-    sectionTop.classList.remove("hidden");
-
-    fillGalleryTrack(trackBottom, loopItems);
-    trackBottom.style.animationDuration = duration;
-    sectionBottom.classList.remove("hidden");
-  }
-
-  function fillGalleryTrack(track, items) {
-    items.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "gallery-item";
-      div.innerHTML = `<img src="${item.imageUrl}" alt="Réalisation" loading="lazy" />`;
-      track.appendChild(div);
-    });
-  }
-
-  // ---------- CADRE DE PROMOTION FLOTTANT ----------
-  const PROMO_DISMISS_KEY = "promo-dismissed-id";
-
-  function renderPromoFloat(promotions) {
-    const el = document.getElementById("promo-float");
-    const seeAll = document.getElementById("promo-see-all");
-    if (!promotions || !promotions.length) { el.classList.remove("show", "enter"); return; }
-
-    // on met en avant la première promotion active (ordre défini côté admin)
-    const promo = promotions[0];
-
-    // identifiant simple pour ne pas ré-afficher une promo déjà fermée par l'utilisateur pendant la session
-    const promoId = [promo.title, promo.promoPrice, promo.normalPrice].join("|");
-    if (sessionStorage.getItem(PROMO_DISMISS_KEY) === promoId) return;
-
-    document.getElementById("promo-image").src = promo.imageUrl || "https://placehold.co/600x400/8b6cf2/ffffff?text=Promotion";
-    document.getElementById("promo-badge").textContent = promo.badge || "Promo";
-    document.getElementById("promo-title").textContent = promo.title || "Offre spéciale";
-    const descEl = document.getElementById("promo-desc");
-    descEl.textContent = promo.description || "";
-    descEl.style.display = promo.description ? "" : "none";
-
-    const oldEl = document.getElementById("promo-price-old");
-    const newEl = document.getElementById("promo-price-new");
-    oldEl.textContent = promo.normalPrice || "";
-    oldEl.style.display = promo.normalPrice ? "" : "none";
-    newEl.textContent = promo.promoPrice || "";
-
-    document.getElementById("promo-cta").textContent = promo.buttonText || "Profiter de l'offre";
-    document.getElementById("promo-cta").onclick = () => openModal(promo.title || "Promotion");
-
-    seeAll.classList.toggle("hidden", promotions.length < 2);
-
-    document.getElementById("promo-close").onclick = () => {
-      sessionStorage.setItem(PROMO_DISMISS_KEY, promoId);
-      el.classList.remove("enter");
-      setTimeout(() => { el.classList.remove("show"); }, 300);
-    };
-
-    el.classList.add("show");
-    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("enter")));
-  }
-
-  function renderPromotionsGrid(promotions) {
-    const section = document.getElementById("promotions-section");
-    const grid = document.getElementById("promotions-grid");
-    const seePromosBtn = document.getElementById("see-promos-btn");
-    grid.innerHTML = "";
-    if (!promotions || !promotions.length) {
-      section.classList.add("hidden");
-      seePromosBtn.classList.remove("show");
-      return;
-    }
-
-    promotions.forEach(promo => {
-      const card = document.createElement("div");
-      card.className = "promo-card";
-      card.innerHTML = `
-        <div class="promo-card-media">
-          <img class="promo-card-img" src="${escapeAttr(promo.imageUrl || "https://placehold.co/600x400/8b6cf2/ffffff?text=Promotion")}" alt="${escapeAttr(promo.title || "Promotion")}" loading="lazy" />
-          <span class="promo-card-badge">${escapeHtml(promo.badge || "Promo")}</span>
+<!-- TÉMOIGNAGES -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <div>
+        <span class="eyebrow">Témoignages</span>
+        <h2>Ce que disent les clients.</h2>
+      </div>
+    </div>
+    <span class="testi-note" id="testi-note" data-reveal><i class="bi bi-info-circle"></i> Exemples de mise en page — les premiers témoignages réels seront ajoutés ici prochainement.</span>
+    <div id="testi-grid" class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="quote">« Emplacement réservé pour un futur témoignage client. »</p>
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="https://placehold.co/80x80/eeece5/8f8d9c?text=%3F" alt="Avatar en attente"></div>
+          <div><div class="testi-name">À venir</div><div class="testi-role">Entreprise à venir</div></div>
         </div>
-        <div class="promo-card-body">
-          <h3 class="font-display font-bold text-base mb-1">${escapeHtml(promo.title || "Offre spéciale")}</h3>
-          ${promo.description ? `<p class="promo-card-desc">${escapeHtml(promo.description)}</p>` : ""}
-          <div class="promo-card-prices">
-            ${promo.normalPrice ? `<span class="promo-card-old">${escapeHtml(promo.normalPrice)}</span>` : ""}
-            <span class="promo-card-new">${escapeHtml(promo.promoPrice || "")}</span>
-          </div>
-          <button class="promo-card-cta">${escapeHtml(promo.buttonText || "Profiter de l'offre")}</button>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="quote">« Emplacement réservé pour un futur témoignage client. »</p>
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="https://placehold.co/80x80/eeece5/8f8d9c?text=%3F" alt="Avatar en attente"></div>
+          <div><div class="testi-name">À venir</div><div class="testi-role">Entreprise à venir</div></div>
         </div>
-      `;
-      card.querySelector(".promo-card-cta").addEventListener("click", () => openModal(promo.title || "Promotion"));
-      grid.appendChild(card);
-    });
-    // Le contenu est prêt, mais la section reste cachée tant que le client
-    // n'a pas cliqué sur "Voir les promos". Seul le bouton devient visible.
-    section.classList.add("hidden");
-    seePromosBtn.classList.add("show");
-  }
-  function escapeAttr(str) { return escapeHtml(str).replace(/"/g, "&quot;"); }
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="quote">« Emplacement réservé pour un futur témoignage client. »</p>
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="https://placehold.co/80x80/eeece5/8f8d9c?text=%3F" alt="Avatar en attente"></div>
+          <div><div class="testi-name">À venir</div><div class="testi-role">Entreprise à venir</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  // Le bouton "Voir les promos" révèle / masque la section (elle est cachée par défaut).
-  document.getElementById("see-promos-btn").addEventListener("click", () => {
-    const section = document.getElementById("promotions-section");
-    const btn = document.getElementById("see-promos-btn");
-    if (!section) return;
-    const label = btn.querySelector("span");
-    const isHidden = section.classList.contains("hidden");
-    if (isHidden) {
-      section.classList.remove("hidden");
-      if (label) label.textContent = "Masquer les promos";
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      section.classList.add("hidden");
-      if (label) label.textContent = "Voir les promos";
-    }
-  });
+<!-- CTA FINALE -->
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-final" data-reveal>
+      <h2>Vous avez une idée ? Transformons-la en projet.</h2>
+      <div class="cta-actions">
+        <a href="devis.html" class="btn btn-accent">Démarrer mon projet</a>
+        <a href="#" data-wa-generic class="btn btn-whatsapp"><i class="bi bi-whatsapp"></i> Discuter sur WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  function buildChannelLink(key, value, serviceTitle) {
-    const msg = serviceTitle ? `Bonjour, je suis intéressé(e) par le service : ${serviceTitle}.` : "Bonjour !";
-    switch (key) {
-      case "instagram": return `https://instagram.com/${cleanHandle(value)}`;
-      case "telegram": return `https://t.me/${cleanHandle(value)}`;
-      case "facebook": return value.startsWith("http") ? value : `https://facebook.com/${cleanHandle(value)}`;
-      case "whatsapp": return `https://wa.me/${cleanPhone(value)}?text=${encodeURIComponent(msg)}`;
-      case "phone": return `tel:${cleanPhone(value)}`;
-      default: return "#";
-    }
-  }
-  function cleanHandle(v) { return v.replace(/^@/, "").replace(/^https?:\/\/[^/]+\//, "").trim(); }
-  function cleanPhone(v) { return v.replace(/[^\d+]/g, ""); }
-  function escapeHtml(str) { const div = document.createElement("div"); div.textContent = str; return div.innerHTML; }
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span data-brand-name>Habib Création</span></div>
+        <p class="footer-desc">Studio créatif &amp; digital. J'accompagne les entreprises de leur identité visuelle jusqu'à leur présence digitale complète.</p>
+        <div class="footer-socials" data-social-list></div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <a href="#accueil">Accueil</a>
+        <a href="services.html">Services</a>
+        <a href="projets.html">Projets</a>
+        <a href="packs.html">Packs</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h5>Studio</h5>
+        <a href="temoignages.html">Témoignages</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="devis.html">Demander un devis</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <p data-contact-location>Niamey, Niger</p>
+        <p data-contact-phone>+227 XX XX XX XX</p>
+        <p data-contact-email>contact@habibcreation.example</p>
+        <a href="#" data-wa-generic><i class="bi bi-whatsapp"></i> Discuter sur WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Habib Création — Tous droits réservés.</span>
+      <div class="footer-bottom-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  function openModal(serviceTitle) {
-    document.getElementById("modal-service-title").textContent = serviceTitle;
-    const container = document.getElementById("modal-channels");
-    container.innerHTML = "";
-    Object.keys(CHANNEL_LABELS).forEach(key => {
-      const value = currentSocials[key];
-      if (!value) return;
-      const a = document.createElement("a");
-      a.href = buildChannelLink(key, value, serviceTitle);
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.className = "channel-row px-3.5 py-3 text-sm flex items-center gap-3";
-      a.innerHTML = `<span class="channel-icon"><i class="bi ${CHANNEL_ICONS[key]}"></i></span><span class="font-medium">${CHANNEL_LABELS[key]}</span>`;
-      container.appendChild(a);
-    });
-    if (!container.children.length) {
-      container.innerHTML = `<p class="text-sm" style="color:var(--ink-soft)">Aucun réseau configuré pour le moment.</p>`;
-    }
-    document.getElementById("modal-overlay").classList.add("open");
-  }
-  document.getElementById("modal-close").addEventListener("click", closeModal);
-  document.getElementById("modal-overlay").addEventListener("click", e => { if (e.target.id === "modal-overlay") closeModal(); });
-  function closeModal() { document.getElementById("modal-overlay").classList.remove("open"); }
+<!-- WIDGET PROMOTION (rempli par l'admin — masqué s'il n'y a aucune promotion active) -->
+<div id="promo-float" class="promo-float" role="complementary" aria-label="Promotion en cours">
+  <button class="promo-close" aria-label="Fermer la promotion"><i class="bi bi-x"></i></button>
+  <img class="promo-img" src="" alt="">
+  <div class="promo-body">
+    <span class="promo-badge"></span>
+    <h4 class="promo-title"></h4>
+    <p class="promo-desc"></p>
+    <div class="promo-prices"><span class="promo-price-old"></span><span class="promo-price-new"></span></div>
+    <a href="#" class="promo-cta btn btn-accent btn-sm btn-block"></a>
+  </div>
+</div>
 
-  // ---------- TOAST DE RETOUR ----------
-  let clientToastTimer = null;
-  function showClientToast(message) {
-    const toast = document.getElementById("client-toast");
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(clientToastTimer);
-    clientToastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
-  }
+<a href="#" data-wa-generic class="wa-float" aria-label="Discuter sur WhatsApp"><i class="bi bi-whatsapp"></i></a>
 
-  // ---------- BOUTON PARTAGE ----------
-  document.getElementById("share-btn").addEventListener("click", async () => {
-    const link = (currentShareLink || "").trim();
-    if (!link) {
-      showClientToast("Le lien du site n'est pas encore configuré.");
-      return;
-    }
-    const shareData = {
-      title: document.getElementById("brand-name").textContent || "Studio",
-      text: "Découvrez ce studio de création graphique et web :",
-      url: link
-    };
-    // Web Share API (ouvre le sélecteur natif WhatsApp / Telegram / Messages / etc.)
-    if (navigator.share) {
-      try {
-        if (!navigator.canShare || navigator.canShare(shareData)) {
-          await navigator.share(shareData);
-          return; // partage effectué avec succès
-        }
-      } catch (err) {
-        if (err && err.name === "AbortError") return; // l'utilisateur a fermé la fenêtre de partage → on ne fait rien de plus
-        // toute autre erreur (API non disponible, contexte non sécurisé…) → on bascule sur la copie
-      }
-    }
-    copyLinkFallback(link);
-  });
-
-  function copyLinkFallback(link) {
-    attemptClipboardCopy(link).then(success => {
-      if (success) {
-        markShareSuccess();
-        showClientToast("Lien copié dans le presse-papiers ✓");
-      } else {
-        // dernier recours, fonctionne pratiquement partout (même sans HTTPS ni permissions)
-        window.prompt("Copiez ce lien manuellement :", link);
-      }
-    });
-  }
-
-  function attemptClipboardCopy(link) {
-    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
-      return navigator.clipboard.writeText(link).then(() => true).catch(() => legacyCopy(link));
-    }
-    return Promise.resolve(legacyCopy(link));
-  }
-
-  // Copie « à l'ancienne » — nécessaire sur les navigateurs/contextes qui ne supportent pas
-  // l'API Clipboard moderne (anciens navigateurs, certains navigateurs intégrés, HTTP non sécurisé…)
-  function legacyCopy(link) {
-    try {
-      const input = document.createElement("textarea");
-      input.value = link;
-      input.setAttribute("readonly", "");
-      input.style.position = "fixed";
-      input.style.top = "0";
-      input.style.left = "0";
-      input.style.opacity = "0";
-      document.body.appendChild(input);
-      input.focus();
-      input.select();
-      input.setSelectionRange(0, link.length);
-      const success = document.execCommand("copy");
-      document.body.removeChild(input);
-      return success;
-    } catch (err) {
-      return false;
-    }
-  }
-
-  function markShareSuccess() {
-    const btn = document.getElementById("share-btn");
-    btn.innerHTML = `<i class="bi bi-check2"></i>`;
-    btn.classList.add("copied");
-    setTimeout(() => {
-      btn.innerHTML = `<i class="bi bi-share"></i>`;
-      btn.classList.remove("copied");
-    }, 1800);
-  }
-
-  // ---------- BANNIÈRE D'INSTALLATION (PWA) ----------
-  const INSTALL_DISMISS_KEY = "install-banner-dismissed";
-  let deferredInstallPrompt = null;
-  const installBanner = document.getElementById("install-banner");
-  const installAction = document.getElementById("install-action");
-  const installLater = document.getElementById("install-later");
-  const installTitle = document.getElementById("install-title");
-  const installText = document.getElementById("install-text");
-
-  function getBrandName() {
-    const el = document.getElementById("brand-name");
-    return (el && el.textContent.trim()) || "Habib Création";
-  }
-
-  function isStandalone() {
-    return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-  }
-
-  function isIOS() {
-    return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
-  }
-
-  // Affiche la bannière et pousse le contenu de la page vers le bas pour ne rien masquer.
-  function showInstallBanner() {
-    if (isStandalone()) return; // déjà installée → jamais de bannière
-    if (sessionStorage.getItem(INSTALL_DISMISS_KEY) === "1") return; // masquée temporairement par l'utilisateur
-    installBanner.classList.add("show");
-    requestAnimationFrame(() => {
-      document.body.style.paddingTop = installBanner.offsetHeight + "px";
-    });
-  }
-
-  function hideInstallBanner() {
-    installBanner.classList.remove("show");
-    document.body.style.paddingTop = "";
-  }
-
-  // Chrome / Edge / Android : capte l'invite native d'installation.
-  // Si cet événement ne se déclenche jamais (et que ce n'est pas iOS), la bannière ne s'affiche jamais.
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    installTitle.textContent = "💻 Installer l'application";
-    installText.textContent = `Installez ${getBrandName()} sur votre appareil pour y accéder rapidement comme une application.`;
-    installAction.textContent = "Installer";
-    installAction.style.display = "";
-    showInstallBanner();
-  });
-
-  installAction.addEventListener("click", async () => {
-    if (deferredInstallPrompt) {
-      // Ouvre la vraie fenêtre d'installation native du navigateur
-      deferredInstallPrompt.prompt();
-      await deferredInstallPrompt.userChoice;
-      deferredInstallPrompt = null; // l'invite ne peut servir qu'une seule fois
-      hideInstallBanner();
-      return;
-    }
-    // iOS Safari : aucune invite native n'existe, on affiche les instructions manuelles
-    installText.textContent = isIOS()
-      ? "Appuyez sur l'icône Partager de Safari, puis sur « Sur l'écran d'accueil »."
-      : "Ouvrez le menu de votre navigateur puis choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil ».";
-    installAction.style.display = "none";
-  });
-
-  installLater.addEventListener("click", () => {
-    sessionStorage.setItem(INSTALL_DISMISS_KEY, "1");
-    hideInstallBanner();
-  });
-
-  // Une fois l'app réellement installée : on ne réaffiche plus jamais la bannière
-  window.addEventListener("appinstalled", () => {
-    deferredInstallPrompt = null;
-    hideInstallBanner();
-  });
-
-  // iOS ne déclenche jamais "beforeinstallprompt" : on propose les instructions manuelles
-  // après un court délai, uniquement si le site n'est pas déjà installé.
-  if (isIOS() && !isStandalone()) {
-    installTitle.textContent = "💻 Installer l'application";
-    installText.textContent = `Installez ${getBrandName()} sur votre appareil : appuyez sur l'icône Partager de Safari, puis sur « Sur l'écran d'accueil ».`;
-    installAction.textContent = "Comment faire ?";
-    setTimeout(showInstallBanner, 2500);
-  }
-
-  // ---------- SERVICE WORKER (requis par Chrome/Android pour proposer l'installation) ----------
-  // Le fichier service-worker.js doit être déposé à la racine de l'hébergement,
-  // au même niveau que Client.html, pour que Chrome déclenche "beforeinstallprompt".
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/service-worker.js").catch(err => {
-        console.warn("Service worker non enregistré (installation manuelle toujours possible) :", err);
-      });
-    });
-  }
-
-  loadSite();
-  </script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/firebase-data.js"></script>
 </body>
 </html>
